@@ -2,148 +2,143 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { FiInstagram, FiTwitter, FiLinkedin, FiGithub } from "react-icons/fi";
+import { FiPhone, FiMessageCircle, FiMail, FiMapPin, FiArrowUp } from "react-icons/fi";
 
 export default function Footer() {
-    return (
-        <section className="w-full bg-[#F9F8F6] pt-10 pb-16 px-4 sm:px-6 md:px-12 flex flex-col items-center border-t border-[#E2E1DD]">
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
 
-            {/* 1. Dark CTA Banner (Full Page width matching content boundaries) */}
-            <div className="w-full max-w-6xl bg-black rounded-[24px] sm:rounded-[32px] p-6 sm:p-10 md:p-14 text-center text-white relative overflow-hidden mb-12 shadow-[0_15px_40px_rgba(0,0,0,0.12)]">
-                {/* Background circular highlights */}
-                <div className="absolute inset-0 pointer-events-none opacity-20 bg-[radial-gradient(circle_at_center,rgba(124,58,237,0.15),transparent_60%)]" />
+  return (
+    <footer className="relative w-full bg-white text-black border-t border-slate-200 pt-16 pb-12 overflow-hidden">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
-                <div className="relative z-10 max-w-2xl mx-auto flex flex-col items-center">
-                    <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight mb-3">
-                        Ready to transform your IC layouts?
-                    </h2>
-                    <p className="text-sm text-slate-300 mb-8 max-w-md leading-relaxed">
-                        Join thousands of physical layout engineers and top semiconductor firms building tapeout-ready silicon layouts.
-                    </p>
-                    <Link
-                        href="/contact"
-                        className="relative px-8 py-3 rounded-full text-xs font-bold text-slate-950 bg-white border border-white hover:text-white transition-colors duration-300 overflow-hidden group/btn shrink-0 shadow-md"
-                    >
-                        <span className="absolute inset-0 bg-[#7C3AED] transform scale-x-0 origin-left transition-transform duration-300 ease-out group-hover/btn:scale-x-100 z-0" />
-                        <span className="relative z-10">Start for free</span>
-                    </Link>
-                </div>
+        {/* 4 Columns Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 pb-12 border-b border-slate-200">
+
+          {/* Col 1: Institute Overview (4 cols) */}
+          <div className="lg:col-span-4 space-y-4">
+            <div className="bg-white px-3 py-1.5 rounded-xl flex items-center justify-center w-fit border border-slate-200 shadow-sm">
+              <Image
+                src="/LIFE FINAL.jpg"
+                alt="LIFE Semiconductor Institute"
+                width={140}
+                height={30}
+                className="h-6 w-auto object-contain"
+              />
             </div>
 
-            {/* 2. Full Page Footer Content (Integrated directly into the page layout, no card wrapper) */}
-            <div className="relative z-10 w-full max-w-6xl flex flex-col justify-between">
+            <p className="text-xs sm:text-sm text-black leading-relaxed">
+              <strong className="text-black font-semibold">LIFE Semiconductor Institute</strong> provides practical and industry-focused training helping learners build strong technical foundations and practical skills for the semiconductor and VLSI industry.
+            </p>
 
-                {/* Top Segment */}
-                <div className="grid grid-cols-1 md:grid-cols-12 gap-8 pb-10">
-
-                    {/* Logo & Description Column */}
-                    <div className="md:col-span-5 flex flex-col gap-5 text-left">
-                        <div className="flex justify-start">
-                            <div className="bg-white px-3.5 py-1.5 rounded-xl flex items-center justify-center border border-slate-200/80 shadow-sm h-10">
-                                <Image
-                                    src="/LIFE FINAL.jpg"
-                                    alt="Life Semiconductors Logo"
-                                    width={150}
-                                    height={30}
-                                    className="h-6 w-auto object-contain"
-                                    priority
-                                />
-                            </div>
-                        </div>
-
-                        <p className="text-xs text-slate-500 leading-relaxed max-w-sm">
-                            LifeSemiconductors empowers engineering teams and VLSI candidates to deliver high-quality, DRC-clean, physical design cell layouts.
-                        </p>
-
-                        {/* Simple Social Icons (Row of black/gray line icons) */}
-                        <div className="flex items-center gap-4 text-slate-500 mt-2">
-                            <a href="#" className="hover:text-[#7C3AED] transition-colors">
-                                <FiTwitter className="w-5 h-5" />
-                            </a>
-                            <a href="#" className="hover:text-[#7C3AED] transition-colors">
-                                <FiInstagram className="w-5 h-5" />
-                            </a>
-                            <a href="#" className="hover:text-[#7C3AED] transition-colors">
-                                <FiLinkedin className="w-5 h-5" />
-                            </a>
-                            <a href="#" className="hover:text-[#7C3AED] transition-colors">
-                                <FiGithub className="w-5 h-5" />
-                            </a>
-                        </div>
-                    </div>
-
-                    {/* Nav Links Grid Segment */}
-                    <div className="md:col-span-7 grid grid-cols-2 sm:grid-cols-3 gap-6 text-left">
-
-                        {/* Column 1: Product */}
-                        <div className="flex flex-col gap-3.5">
-                            <h4 className="text-xs font-bold text-slate-800 tracking-wider">
-                                Training
-                            </h4>
-                            <nav className="flex flex-col gap-2.5 text-xs text-slate-500">
-                                <Link href="/training" className="hover:text-[#7C3AED] transition-colors">Analog Layout</Link>
-                                <Link href="/training" className="hover:text-[#7C3AED] transition-colors">Digital Physical Design</Link>
-                                <Link href="/training" className="hover:text-[#7C3AED] transition-colors">RF Layout Design</Link>
-                                <Link href="/training" className="hover:text-[#7C3AED] transition-colors">Memory Array Layout</Link>
-                                <Link href="/training" className="hover:text-[#7C3AED] transition-colors">Standard Cell Layout</Link>
-                            </nav>
-                        </div>
-
-                        {/* Column 2: Resources */}
-                        <div className="flex flex-col gap-3.5">
-                            <h4 className="text-xs font-bold text-slate-800 tracking-wider">
-                                Resources
-                            </h4>
-                            <nav className="flex flex-col gap-2.5 text-xs text-slate-500">
-                                <Link href="/about" className="hover:text-[#7C3AED] transition-colors">Documentation</Link>
-                                <Link href="/training" className="hover:text-[#7C3AED] transition-colors">Tutorials</Link>
-                                <Link href="/blog" className="hover:text-[#7C3AED] transition-colors">VLSI Bootcamps</Link>
-                                <Link href="/about" className="hover:text-[#7C3AED] transition-colors">Layout Guides</Link>
-                                <Link href="/contact" className="hover:text-[#7C3AED] transition-colors">Support Help</Link>
-                            </nav>
-                        </div>
-
-                        {/* Column 3: Company */}
-                        <div className="flex flex-col gap-3.5 col-span-2 sm:col-span-1">
-                            <h4 className="text-xs font-bold text-slate-800 tracking-wider">
-                                Company
-                            </h4>
-                            <nav className="flex flex-col gap-2.5 text-xs text-slate-500">
-                                <Link href="/about" className="hover:text-[#7C3AED] transition-colors">About Us</Link>
-                                <Link href="/contact" className="hover:text-[#7C3AED] transition-colors">Contact Us</Link>
-                                <Link href="/blog" className="hover:text-[#7C3AED] transition-colors">Technical Blog</Link>
-                                <Link href="/gallery" className="hover:text-[#7C3AED] transition-colors">Media Gallery</Link>
-                                <Link href="#" className="hover:text-[#7C3AED] transition-colors">Partnerships</Link>
-                            </nav>
-                        </div>
-
-                    </div>
-                </div>
-
-                {/* Divider */}
-                <div className="border-t border-slate-200/80 w-full my-6" />
-
-                {/* Bottom Metadata Segment */}
-                <div className="w-full flex flex-col sm:flex-row justify-between items-center gap-4 text-[11px] text-slate-400 font-medium">
-                    <div>
-                        © 2026 LifeSemiconductors. All rights reserved.
-                    </div>
-                    <div className="flex items-center gap-6">
-                        <a href="#" className="hover:text-[#7C3AED] transition-colors">Privacy Policy</a>
-                        <a href="#" className="hover:text-[#7C3AED] transition-colors">Terms of Service</a>
-                        <a href="#" className="hover:text-[#7C3AED] transition-colors">Cookies Settings</a>
-                    </div>
-                </div>
-
+            <div className="pt-2 text-xs text-black font-semibold tracking-wide">
+              Practical. Industry-Focused. Career-Ready.
             </div>
+          </div>
 
-            {/* 3. Giant Low-Contrast Watermark (Outside the card, floating on the page bg) */}
-            <div className="w-full text-center mt-12 select-none pointer-events-none opacity-30 px-6">
-                <span className="text-[12vw] sm:text-[10vw] md:text-[8vw] lg:text-[7rem] font-bold text-slate-500 tracking-wide font-[family-name:var(--font-dancing-script)] block leading-none">
-                    Life Semiconductors
+          {/* Col 2: Quick Links (2 cols) */}
+          <div className="lg:col-span-2 space-y-3">
+            <h4 className="text-xs font-mono font-bold uppercase tracking-wider text-black">
+              Quick Links
+            </h4>
+            <ul className="space-y-2 text-xs text-black">
+              <li><Link href="/#hero" className="hover:text-blue-600 transition-colors">Home</Link></li>
+              <li><Link href="/#about" className="hover:text-blue-600 transition-colors">About Us</Link></li>
+              <li><Link href="/#courses" className="hover:text-blue-600 transition-colors">Courses</Link></li>
+              <li><Link href="/#projects" className="hover:text-blue-600 transition-colors">Projects</Link></li>
+              <li><Link href="/#why-life" className="hover:text-blue-600 transition-colors">Why LIFE</Link></li>
+              <li><Link href="/#journey" className="hover:text-blue-600 transition-colors">Learning Journey</Link></li>
+              <li><Link href="/#insights" className="hover:text-blue-600 transition-colors">Insights</Link></li>
+              <li><Link href="/#contact" className="hover:text-blue-600 transition-colors">Contact</Link></li>
+            </ul>
+          </div>
+
+          {/* Col 3: Programs (3 cols) */}
+          <div className="lg:col-span-3 space-y-3">
+            <h4 className="text-xs font-mono font-bold uppercase tracking-wider text-black">
+              Training Courses
+            </h4>
+            <ul className="space-y-2 text-xs text-black">
+              <li><Link href="/#courses" className="hover:text-blue-600 transition-colors">Physical Design</Link></li>
+              <li><Link href="/#courses" className="hover:text-blue-600 transition-colors">Analog Design</Link></li>
+              <li><Link href="/#analog-layout" className="hover:text-blue-600 transition-colors font-medium">Analog Layout (3-Month Flagship)</Link></li>
+              <li><Link href="/#curriculum" className="hover:text-blue-600 transition-colors">Analog Layout 10-Module Syllabus</Link></li>
+              <li><Link href="/#courses" className="hover:text-blue-600 transition-colors">Memory Design</Link></li>
+              <li><Link href="/#courses" className="hover:text-blue-600 transition-colors">Memory Layout</Link></li>
+            </ul>
+          </div>
+
+          {/* Col 4: Contact Information (3 cols) */}
+          <div className="lg:col-span-3 space-y-3">
+            <h4 className="text-xs font-mono font-bold uppercase tracking-wider text-black">
+              Contact Institute
+            </h4>
+            <div className="space-y-3 text-xs text-black">
+              <div className="flex items-center gap-2.5">
+                <FiPhone className="w-4 h-4 text-black shrink-0" />
+                <a href="tel:+919618347989" className="text-black hover:text-blue-600 font-medium transition-colors">
+                  +91 9618347989
+                </a>
+              </div>
+              <div className="flex items-center gap-2.5">
+                <FiMessageCircle className="w-4 h-4 text-black shrink-0" />
+                <a
+                  href="https://wa.me/919618347989"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-black hover:text-blue-600 font-medium hover:underline"
+                >
+                  WhatsApp: +91 9618347989
+                </a>
+              </div>
+              <div className="flex items-center gap-2.5">
+                <FiMail className="w-4 h-4 text-black shrink-0" />
+                <a href="mailto:info@lifesemiconductors.com" className="text-black hover:text-blue-600 transition-colors">
+                  info@lifesemiconductors.com
+                </a>
+              </div>
+              <div className="flex items-start gap-2.5 pt-1">
+                <FiMapPin className="w-4 h-4 text-black shrink-0 mt-0.5" />
+                <span className="text-black leading-relaxed">
+                  Silicon Technology Hub, HITEC City, Hyderabad, India
                 </span>
+              </div>
             </div>
+          </div>
 
-        </section>
-    );
+        </div>
+
+        {/* Bottom Bar */}
+        <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-black">
+          <div>
+            © 2026 LIFE Semiconductor Institute. All Rights Reserved.
+          </div>
+
+          <div className="flex items-center gap-6">
+            <a href="#" className="hover:text-blue-600 transition-colors">Privacy Policy</a>
+            <a href="#" className="hover:text-blue-600 transition-colors">Terms & Conditions</a>
+            <button
+              onClick={scrollToTop}
+              className="flex items-center gap-1 p-2.5 rounded-xl bg-slate-100 border border-slate-300 text-black hover:text-white hover:bg-black transition-all shadow-sm"
+              title="Scroll to Top"
+            >
+              <FiArrowUp className="w-4 h-4" />
+            </button>
+          </div>
+        </div>
+
+        {/* Large Brand Watermark Text */}
+        <div className="w-full text-center mt-12 select-none pointer-events-none opacity-20">
+          <span
+            style={{ fontFamily: "var(--font-dancing-script), 'Dancing Script', cursive" }}
+            className="text-[11vw] sm:text-[9vw] md:text-[7.5vw] font-bold text-black tracking-tight font-cursive block leading-none"
+          >
+            LIFE Semiconductor Institute
+          </span>
+        </div>
+
+      </div>
+    </footer>
+  );
 }
