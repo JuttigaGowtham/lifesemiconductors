@@ -1,144 +1,321 @@
 "use client";
 
-import Link from "next/link";
+import React from "react";
 import Image from "next/image";
-import { FiPhone, FiMessageCircle, FiMail, FiMapPin, FiArrowUp } from "react-icons/fi";
+import Link from "next/link";
+import { FiMail, FiPhone, FiMapPin } from "react-icons/fi";
 
 export default function Footer() {
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  };
-
   return (
-    <footer className="relative w-full bg-white text-black border-t border-slate-200 pt-16 pb-12 overflow-hidden">
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <footer className="w-full bg-[#FAFAFC] text-black border-t border-neutral-200 font-sans selection:bg-black selection:text-white transition-colors duration-300">
 
-        {/* 4 Columns Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 pb-12 border-b border-slate-200">
-
-          {/* Col 1: Institute Overview (4 cols) */}
-          <div className="lg:col-span-4 space-y-4">
-            <div className="bg-white px-3 py-1.5 rounded-xl flex items-center justify-center w-fit border border-slate-200 shadow-sm">
+      {/* 1. TOP SECTION: Semiconductor Chip PCB Design with Anatomical Scientific Leader Labels */}
+      <div className="w-full border-b border-neutral-200 overflow-hidden bg-white">
+        <div className="w-full max-w-[1300px] mx-auto px-4 sm:px-8 py-8 sm:py-12">
+          {/* Diagram Container with Vector Leader Lines & Labels */}
+          <div className="relative w-full max-w-[1000px] mx-auto aspect-[4501/2807] select-none">
+            <div className="relative w-full h-full">
+              {/* Central PCB Image */}
               <Image
-                src="/LIFE FINAL.jpg"
-                alt="LIFE Semiconductor Institute"
-                width={140}
-                height={30}
-                className="h-6 w-auto object-contain"
+                src="/footer.jpg"
+                alt="Semiconductor Chip Board Architecture"
+                fill
+                priority
+                className="object-contain object-center pointer-events-none"
               />
+
+              {/* SVG Overlay for Scientific Leader Lines & Labels */}
+              <svg 
+                className="absolute inset-0 w-full h-full pointer-events-none z-10"
+                viewBox="0 0 1000 624"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                {/* 1. SOC PROCESSOR CORE (Top Left-Center) */}
+                <g>
+                  <circle cx="395" cy="140" r="3.5" fill="#171717" />
+                  <polyline 
+                    points="190,45 330,45 395,140" 
+                    stroke="#171717" 
+                    strokeWidth="1.5" 
+                    strokeLinecap="round" 
+                    strokeLinejoin="round" 
+                  />
+                  <text 
+                    x="180" 
+                    y="45" 
+                    textAnchor="end" 
+                    dominantBaseline="middle"
+                    className="font-mono font-semibold text-[11px] sm:text-[12px] fill-neutral-900 tracking-wider uppercase"
+                  >
+                    SOC PROCESSOR CORE
+                  </text>
+                </g>
+
+                {/* 2. ELECTROLYTIC CAPACITOR (Top Left) */}
+                <g>
+                  <circle cx="150" cy="180" r="3.5" fill="#171717" />
+                  <polyline 
+                    points="190,130 150,130 150,180" 
+                    stroke="#171717" 
+                    strokeWidth="1.5" 
+                    strokeLinecap="round" 
+                    strokeLinejoin="round" 
+                  />
+                  <text 
+                    x="180" 
+                    y="130" 
+                    textAnchor="end" 
+                    dominantBaseline="middle"
+                    className="font-mono font-semibold text-[11px] sm:text-[12px] fill-neutral-900 tracking-wider uppercase"
+                  >
+                    ELECTROLYTIC CAPACITOR
+                  </text>
+                </g>
+
+                {/* 3. DATA BUS TRACES (Mid Left) */}
+                <g>
+                  <circle cx="311" cy="322" r="3.5" fill="#171717" />
+                  <polyline 
+                    points="190,310 230,310 311,322" 
+                    stroke="#171717" 
+                    strokeWidth="1.5" 
+                    strokeLinecap="round" 
+                    strokeLinejoin="round" 
+                  />
+                  <text 
+                    x="180" 
+                    y="310" 
+                    textAnchor="end" 
+                    dominantBaseline="middle"
+                    className="font-mono font-semibold text-[11px] sm:text-[12px] fill-neutral-900 tracking-wider uppercase"
+                  >
+                    DATA BUS TRACES
+                  </text>
+                </g>
+
+                {/* 4. EXPANSION BUS INTERFACE (Bottom Left) */}
+                <g>
+                  <circle cx="284" cy="407" r="3.5" fill="#171717" />
+                  <polyline 
+                    points="190,485 220,485 284,407" 
+                    stroke="#171717" 
+                    strokeWidth="1.5" 
+                    strokeLinecap="round" 
+                    strokeLinejoin="round" 
+                  />
+                  <text 
+                    x="180" 
+                    y="485" 
+                    textAnchor="end" 
+                    dominantBaseline="middle"
+                    className="font-mono font-semibold text-[11px] sm:text-[12px] fill-neutral-900 tracking-wider uppercase"
+                  >
+                    EXPANSION BUS INTERFACE
+                  </text>
+                </g>
+
+                {/* 5. DRIVER & LOGIC IC (Center / Top Right) */}
+                <g>
+                  <circle cx="495" cy="262" r="3.5" fill="#171717" />
+                  <polyline 
+                    points="495,262 580,135 815,135" 
+                    stroke="#171717" 
+                    strokeWidth="1.5" 
+                    strokeLinecap="round" 
+                    strokeLinejoin="round" 
+                  />
+                  <text 
+                    x="825" 
+                    y="135" 
+                    textAnchor="start" 
+                    dominantBaseline="middle"
+                    className="font-mono font-semibold text-[11px] sm:text-[12px] fill-neutral-900 tracking-wider uppercase"
+                  >
+                    DRIVER & LOGIC IC
+                  </text>
+                </g>
+
+                {/* 6. I/O CONNECTOR ARRAY (Right) */}
+                <g>
+                  <circle cx="750" cy="270" r="3.5" fill="#171717" />
+                  <polyline 
+                    points="750,270 790,240 815,240" 
+                    stroke="#171717" 
+                    strokeWidth="1.5" 
+                    strokeLinecap="round" 
+                    strokeLinejoin="round" 
+                  />
+                  <text 
+                    x="825" 
+                    y="240" 
+                    textAnchor="start" 
+                    dominantBaseline="middle"
+                    className="font-mono font-semibold text-[11px] sm:text-[12px] fill-neutral-900 tracking-wider uppercase"
+                  >
+                    I/O CONNECTOR ARRAY
+                  </text>
+                </g>
+
+                {/* 7. SMD PASSIVE ARRAYS (Mid Lower Right) */}
+                <g>
+                  <circle cx="580" cy="325" r="3.5" fill="#171717" />
+                  <polyline 
+                    points="580,325 670,360 815,360" 
+                    stroke="#171717" 
+                    strokeWidth="1.5" 
+                    strokeLinecap="round" 
+                    strokeLinejoin="round" 
+                  />
+                  <text 
+                    x="825" 
+                    y="360" 
+                    textAnchor="start" 
+                    dominantBaseline="middle"
+                    className="font-mono font-semibold text-[11px] sm:text-[12px] fill-neutral-900 tracking-wider uppercase"
+                  >
+                    SMD PASSIVE ARRAYS
+                  </text>
+                </g>
+
+                {/* 8. CRYSTAL OSCILLATOR (Bottom Right) */}
+                <g>
+                  <circle cx="622" cy="482" r="3.5" fill="#171717" />
+                  <polyline 
+                    points="622,482 710,505 815,505" 
+                    stroke="#171717" 
+                    strokeWidth="1.5" 
+                    strokeLinecap="round" 
+                    strokeLinejoin="round" 
+                  />
+                  <text 
+                    x="825" 
+                    y="505" 
+                    textAnchor="start" 
+                    dominantBaseline="middle"
+                    className="font-mono font-semibold text-[11px] sm:text-[12px] fill-neutral-900 tracking-wider uppercase"
+                  >
+                    CRYSTAL OSCILLATOR
+                  </text>
+                </g>
+
+              </svg>
+
             </div>
-
-            <p className="text-xs sm:text-sm text-black leading-relaxed">
-              <strong className="text-black font-semibold">LIFE Semiconductor Institute</strong> provides practical and industry-focused training helping learners build strong technical foundations and practical skills for the semiconductor and VLSI industry.
-            </p>
-
-            <div className="pt-2 text-xs text-black font-semibold tracking-wide">
-              Practical. Industry-Focused. Career-Ready.
-            </div>
-          </div>
-
-          {/* Col 2: Quick Links (2 cols) */}
-          <div className="lg:col-span-2 space-y-3">
-            <h4 className="text-xs font-mono font-bold uppercase tracking-wider text-black">
-              Quick Links
-            </h4>
-            <ul className="space-y-2 text-xs text-black">
-              <li><Link href="/#hero" className="hover:text-blue-600 transition-colors">Home</Link></li>
-              <li><Link href="/#about" className="hover:text-blue-600 transition-colors">About Us</Link></li>
-              <li><Link href="/#courses" className="hover:text-blue-600 transition-colors">Courses</Link></li>
-              <li><Link href="/#projects" className="hover:text-blue-600 transition-colors">Projects</Link></li>
-              <li><Link href="/#why-life" className="hover:text-blue-600 transition-colors">Why LIFE</Link></li>
-              <li><Link href="/#journey" className="hover:text-blue-600 transition-colors">Learning Journey</Link></li>
-              <li><Link href="/#insights" className="hover:text-blue-600 transition-colors">Insights</Link></li>
-              <li><Link href="/#contact" className="hover:text-blue-600 transition-colors">Contact</Link></li>
-            </ul>
-          </div>
-
-          {/* Col 3: Programs (3 cols) */}
-          <div className="lg:col-span-3 space-y-3">
-            <h4 className="text-xs font-mono font-bold uppercase tracking-wider text-black">
-              Training Courses
-            </h4>
-            <ul className="space-y-2 text-xs text-black">
-              <li><Link href="/#courses" className="hover:text-blue-600 transition-colors">Physical Design</Link></li>
-              <li><Link href="/#courses" className="hover:text-blue-600 transition-colors">Analog Design</Link></li>
-              <li><Link href="/#analog-layout" className="hover:text-blue-600 transition-colors font-medium">Analog Layout (3-Month Flagship)</Link></li>
-              <li><Link href="/#curriculum" className="hover:text-blue-600 transition-colors">Analog Layout 10-Module Syllabus</Link></li>
-              <li><Link href="/#courses" className="hover:text-blue-600 transition-colors">Memory Design</Link></li>
-              <li><Link href="/#courses" className="hover:text-blue-600 transition-colors">Memory Layout</Link></li>
-            </ul>
-          </div>
-
-          {/* Col 4: Contact Information (3 cols) */}
-          <div className="lg:col-span-3 space-y-3">
-            <h4 className="text-xs font-mono font-bold uppercase tracking-wider text-black">
-              Contact Institute
-            </h4>
-            <div className="space-y-3 text-xs text-black">
-              <div className="flex items-center gap-2.5">
-                <FiPhone className="w-4 h-4 text-black shrink-0" />
-                <a href="tel:+919618347989" className="text-black hover:text-blue-600 font-medium transition-colors">
-                  +91 9618347989
-                </a>
-              </div>
-              <div className="flex items-center gap-2.5">
-                <FiMessageCircle className="w-4 h-4 text-black shrink-0" />
-                <a
-                  href="https://wa.me/919618347989"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-black hover:text-blue-600 font-medium hover:underline"
-                >
-                  WhatsApp: +91 9618347989
-                </a>
-              </div>
-              <div className="flex items-center gap-2.5">
-                <FiMail className="w-4 h-4 text-black shrink-0" />
-                <a href="mailto:info@lifesemiconductors.com" className="text-black hover:text-blue-600 transition-colors">
-                  info@lifesemiconductors.com
-                </a>
-              </div>
-              <div className="flex items-start gap-2.5 pt-1">
-                <FiMapPin className="w-4 h-4 text-black shrink-0 mt-0.5" />
-                <span className="text-black leading-relaxed">
-                  Silicon Technology Hub, HITEC City, Hyderabad, India
-                </span>
-              </div>
-            </div>
-          </div>
-
-        </div>
-
-        {/* Bottom Bar */}
-        <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-black">
-          <div>
-            © 2026 LIFE Semiconductor Institute. All Rights Reserved.
-          </div>
-
-          <div className="flex items-center gap-6">
-            <a href="#" className="hover:text-blue-600 transition-colors">Privacy Policy</a>
-            <a href="#" className="hover:text-blue-600 transition-colors">Terms & Conditions</a>
-            <button
-              onClick={scrollToTop}
-              className="flex items-center gap-1 p-2.5 rounded-xl bg-slate-100 border border-slate-300 text-black hover:text-white hover:bg-black transition-all shadow-sm"
-              title="Scroll to Top"
-            >
-              <FiArrowUp className="w-4 h-4" />
-            </button>
           </div>
         </div>
-
-        {/* Large Brand Watermark Text */}
-        <div className="w-full text-center mt-12 select-none pointer-events-none opacity-20">
-          <span
-            style={{ fontFamily: "var(--font-dancing-script), 'Dancing Script', cursive" }}
-            className="text-[11vw] sm:text-[9vw] md:text-[7.5vw] font-bold text-black tracking-tight font-cursive block leading-none"
-          >
-            LIFE Semiconductor Institute
-          </span>
-        </div>
-
       </div>
+
+      {/* 2. MID SECTION: Category Navigation Row */}
+      <div className="w-full border-b border-neutral-200 bg-[#FAFAFC]">
+        <div className="max-w-[1700px] mx-auto px-6 sm:px-10 lg:px-16 py-5">
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 text-xs sm:text-sm font-mono tracking-wider uppercase text-neutral-600">
+            <div>
+              <Link
+                href="/#about"
+                className="hover:text-black transition-colors inline-block font-medium"
+              >
+                About Institute
+              </Link>
+            </div>
+            <div>
+              <Link
+                href="/#insights"
+                className="hover:text-black transition-colors inline-block font-medium"
+              >
+                Media & Insights
+              </Link>
+            </div>
+            <div>
+              <Link
+                href="/#career-prep"
+                className="hover:text-black transition-colors inline-block font-medium"
+              >
+                Careers & Outcomes
+              </Link>
+            </div>
+            <div className="sm:text-right">
+              <Link
+                href="/#contact"
+                className="hover:text-black transition-colors inline-block font-bold text-black"
+              >
+                Join Us →
+              </Link>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* 3. BOTTOM SECTION: Headline + HQ Info + Pill Action Button */}
+      <div className="w-full py-12 sm:py-16 lg:py-20 bg-[#FAFAFC]">
+        <div className="max-w-[1700px] mx-auto px-6 sm:px-10 lg:px-16">
+          <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-10">
+
+            {/* Left: Massive LIFE Name with Semiconductors Subtitle */}
+            <div className="flex-1 min-w-[240px]">
+              <h2 className="text-7xl sm:text-8xl md:text-9xl lg:text-[130px] font-black uppercase tracking-tighter text-black leading-none select-none">
+                LIFE
+              </h2>
+              <span className="block text-xs sm:text-sm md:text-base font-mono font-bold tracking-[0.35em] uppercase text-neutral-500 mt-1 select-none">
+                SEMICONDUCTORS
+              </span>
+            </div>
+
+            {/* Middle: HQ Address & Contact Info */}
+            <div className="text-xs sm:text-sm leading-relaxed text-neutral-600 space-y-2">
+              <div className="font-semibold text-sm sm:text-base text-black">
+                LIFE Semiconductor Institute
+              </div>
+              <div className="flex items-center gap-2">
+                <FiMapPin className="w-4 h-4 text-neutral-800 shrink-0" />
+                <span>Silicon Technology Hub, HITEC City, Hyderabad, India</span>
+              </div>
+              <div className="pt-2 flex flex-wrap items-center gap-x-5 gap-y-2 text-xs sm:text-sm">
+                <a
+                  href="mailto:info@lifesemiconductors.com"
+                  className="flex items-center gap-1.5 text-neutral-700 hover:text-black font-medium transition-colors"
+                >
+                  <FiMail className="w-3.5 h-3.5 text-neutral-800" />
+                  <span>info@lifesemiconductors.com</span>
+                </a>
+                <span className="text-neutral-300">•</span>
+                <a
+                  href="tel:+919618347989"
+                  className="flex items-center gap-1.5 text-neutral-700 hover:text-black font-medium transition-colors"
+                >
+                  <FiPhone className="w-3.5 h-3.5 text-neutral-800" />
+                  <span>+91 9618347989</span>
+                </a>
+              </div>
+            </div>
+
+            {/* Right: Rounded Pill Button matching About Page */}
+            <div className="flex items-center lg:justify-end">
+              <Link
+                href="/#contact"
+                className="inline-flex items-center justify-center px-8 py-3.5 rounded-full font-medium text-sm text-white bg-black hover:bg-neutral-800 shadow-sm transition-all duration-300 active:scale-98"
+              >
+                <span>Get In Touch →</span>
+              </Link>
+            </div>
+
+          </div>
+
+          {/* Micro Footer Bottom Bar */}
+          <div className="mt-14 pt-8 border-t border-neutral-200 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-neutral-500 font-mono">
+            <div>
+              © 2026 LIFE Semiconductor Institute. All Rights Reserved.
+            </div>
+            <div className="flex items-center gap-4">
+              <span>HITEC City • Hyderabad</span>
+              <span>•</span>
+              <span>Physical Design • Analog Layout • Memory Design</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
     </footer>
   );
 }

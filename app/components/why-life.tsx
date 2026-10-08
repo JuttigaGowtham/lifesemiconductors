@@ -1,134 +1,100 @@
 "use client";
 
+import React from "react";
+
 const steps = [
   {
-    num: "01",
+    num: "1",
     stepLabel: "Step 1",
     title: "Strong Fundamentals",
-    description: "Build a clear understanding of semiconductor and VLSI concepts before moving into advanced topics."
+    description: "Build a clear understanding of semiconductor and VLSI concepts before moving into advanced topics.",
   },
   {
-    num: "02",
+    num: "2",
     stepLabel: "Step 2",
     title: "Practical Approach",
-    description: "Learn through exercises, implementation, debugging, and project-based learning."
+    description: "Learn through exercises, implementation, debugging, and project-based learning.",
   },
   {
-    num: "03",
+    num: "3",
     stepLabel: "Step 3",
     title: "Industry-Relevant Skills",
-    description: "Understand methodologies, tools, and workflows used in semiconductor design environments."
+    description: "Understand methodologies, tools, and workflows used in semiconductor design environments.",
   },
   {
-    num: "04",
+    num: "4",
     stepLabel: "Step 4",
     title: "Project-Based Learning",
-    description: "Apply technical concepts through practical design and layout projects."
+    description: "Apply technical concepts through practical design and layout projects.",
   },
   {
-    num: "05",
+    num: "5",
     stepLabel: "Step 5",
     title: "Verification Mindset",
-    description: "Learn to identify, analyze, debug, and resolve design and physical verification issues."
+    description: "Learn to identify, analyze, debug, and resolve design and physical verification issues.",
   },
   {
-    num: "06",
+    num: "6",
     stepLabel: "Step 6",
     title: "Career Preparation",
-    description: "Develop technical confidence through interview-oriented learning and project discussions."
-  }
+    description: "Develop technical confidence through interview-oriented learning and project discussions.",
+  },
 ];
 
 export default function WhyLife() {
   return (
-    <section id="why-life" className="relative w-full py-28 bg-[#FBFBFC] text-black border-t border-slate-200 overflow-hidden">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        
-        {/* Centered Section Header matching reference image */}
-        <div className="text-center max-w-2xl mx-auto mb-20">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-[#0A192F] tracking-tight leading-tight mb-2">
-            Our Process
-          </h2>
+    <section id="why-life" className="relative w-full bg-[#F2F2F2] text-neutral-900 border-t border-neutral-300 overflow-hidden selection:bg-black selection:text-white">
+      <div className="w-full max-w-[1700px] mx-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-12 min-h-screen">
           
-          {/* Blue Accent Underline Bar */}
-          <div className="w-14 h-1 bg-[#1D4ED8] mx-auto rounded-full mt-3" />
-        </div>
+          {/* Left Column: Big Impact Headline (Sticky on desktop) */}
+          <div className="lg:col-span-5 px-6 sm:px-10 lg:px-14 py-16 sm:py-24 lg:py-32 lg:border-r border-neutral-300 flex flex-col justify-between">
+            <div className="lg:sticky lg:top-28">
+              <h2 className="text-5xl sm:text-7xl md:text-8xl lg:text-[5.5rem] xl:text-[6.5rem] font-black uppercase tracking-tight text-neutral-900 leading-[0.9] mb-8 sm:mb-10">
+                HOW WE
+                <br />
+                WORK
+              </h2>
 
-        {/* Process Steps (2 Rows of 3 Steps with Continuous Connector Lines) */}
-        <div className="space-y-20">
-          
-          {/* Row 1: Steps 01 — 02 — 03 */}
-          <div className="relative">
-            {/* Continuous Background Horizontal Line */}
-            <div className="hidden md:block absolute top-[44px] left-[15%] right-[15%] h-[2px] bg-slate-300 z-0" />
-
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-8 relative z-10">
-              {steps.slice(0, 3).map((item) => (
-                <div key={item.num} className="flex flex-col items-center text-center">
-                  
-                  {/* Big Outlined Number with white bg masking the connector line */}
-                  <div className="px-6 bg-[#FBFBFC] mb-4">
-                    <span className="text-6xl sm:text-7xl font-light font-mono text-transparent [-webkit-text-stroke:2.5px_#222] tracking-normal select-none block leading-none">
-                      {item.num}
-                    </span>
-                  </div>
-
-                  {/* Step Label in Blue */}
-                  <span className="text-base sm:text-lg font-bold text-[#1D4ED8] mb-2 tracking-wide">
-                    {item.stepLabel}
-                  </span>
-
-                  {/* Title & Description */}
-                  <div className="max-w-[280px]">
-                    <h3 className="text-base font-bold text-[#0A192F] mb-1.5">
-                      {item.title}
-                    </h3>
-                    <p className="text-slate-500 text-xs sm:text-sm leading-relaxed">
-                      {item.description}
-                    </p>
-                  </div>
-                </div>
-              ))}
+              <p className="text-base sm:text-lg md:text-xl text-neutral-600 font-normal leading-relaxed max-w-md">
+                Guiding every engineer from fundamental concepts to career completion seamlessly.
+              </p>
             </div>
           </div>
 
-          {/* Row 2: Steps 04 — 05 — 06 */}
-          <div className="relative pt-6">
-            {/* Continuous Background Horizontal Line */}
-            <div className="hidden md:block absolute top-[68px] left-[15%] right-[15%] h-[2px] bg-slate-300 z-0" />
-
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-8 relative z-10">
-              {steps.slice(3, 6).map((item) => (
-                <div key={item.num} className="flex flex-col items-center text-center">
-                  
-                  {/* Big Outlined Number with white bg masking the connector line */}
-                  <div className="px-6 bg-[#FBFBFC] mb-4">
-                    <span className="text-6xl sm:text-7xl font-light font-mono text-transparent [-webkit-text-stroke:2.5px_#222] tracking-normal select-none block leading-none">
-                      {item.num}
-                    </span>
-                  </div>
-
-                  {/* Step Label in Blue */}
-                  <span className="text-base sm:text-lg font-bold text-[#1D4ED8] mb-2 tracking-wide">
-                    {item.stepLabel}
+          {/* Right Column: Numbered Process Grid List */}
+          <div className="lg:col-span-7 flex flex-col border-t lg:border-t-0 border-neutral-300">
+            {steps.map((item, index) => (
+              <div
+                key={item.num}
+                className={`grid grid-cols-12 border-b border-neutral-300 transition-colors duration-300 hover:bg-neutral-200/50 ${
+                  index === 0 ? "border-t lg:border-t-0" : ""
+                }`}
+              >
+                {/* Left Number Sub-Column */}
+                <div className="col-span-3 sm:col-span-3 md:col-span-3 px-5 sm:px-8 py-8 sm:py-12 flex flex-col justify-between">
+                  <span className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-light text-neutral-900 select-none leading-none">
+                    {item.num}
                   </span>
+                  <div className="w-6 sm:w-8 h-[2px] bg-neutral-900 mt-6 sm:mt-10" />
+                </div>
 
-                  {/* Title & Description */}
-                  <div className="max-w-[280px]">
-                    <h3 className="text-base font-bold text-[#0A192F] mb-1.5">
+                {/* Right Content Sub-Column */}
+                <div className="col-span-9 sm:col-span-9 md:col-span-9 px-6 sm:px-10 lg:px-12 py-8 sm:py-12 border-l border-neutral-300 flex flex-col justify-between min-h-[160px] sm:min-h-[190px]">
+                  <div>
+                    <h3 className="text-2xl sm:text-3xl md:text-4xl font-medium tracking-tight text-neutral-900 mb-4 sm:mb-6">
                       {item.title}
                     </h3>
-                    <p className="text-slate-500 text-xs sm:text-sm leading-relaxed">
-                      {item.description}
-                    </p>
                   </div>
+                  <p className="text-xs sm:text-sm md:text-base text-neutral-600 font-normal leading-relaxed max-w-lg">
+                    {item.description}
+                  </p>
                 </div>
-              ))}
-            </div>
+              </div>
+            ))}
           </div>
 
         </div>
-
       </div>
     </section>
   );

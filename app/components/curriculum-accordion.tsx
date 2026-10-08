@@ -1,190 +1,167 @@
 "use client";
 
-const modules = [
+import React from "react";
+import Image from "next/image";
+
+const allTenModules = [
   {
-    num: "1",
-    module: "Module 01",
-    title: "Semiconductor & Analog Layout Fundamentals",
-    topics: [
-      "Semiconductor Basics",
-      "CMOS Fundamentals",
-      "MOS Devices",
-      "Analog IC Design Overview",
-      "Technology Files and Layers"
-    ]
+    num: "01/",
+    title: "SEMICONDUCTOR & CMOS FUNDAMENTALS",
+    desc: "Semiconductor physics, energy bands, CMOS basics, NMOS/PMOS operation, threshold voltage, small-signal models, and nanometer technology layers.",
+    dots: "•••",
   },
   {
-    num: "2",
-    module: "Module 02",
-    title: "Layout Design Fundamentals",
-    topics: [
-      "Layout Environment",
-      "Layers",
-      "Contacts",
-      "Vias",
-      "Design Rules",
-      "Connectivity"
-    ]
+    num: "02/",
+    title: "LAYOUT DESIGN FUNDAMENTALS",
+    desc: "EDA layout environment, layer hierarchy, active/poly regions, contacts, vias, basic design rules (DRC), and layout-versus-schematic (LVS) connectivity.",
+    dots: "•••",
   },
   {
-    num: "3",
-    module: "Module 03",
-    title: "Floor Planning & Device Placement",
-    topics: [
-      "Layout Planning",
-      "Block Organization",
-      "Power & Ground Planning",
-      "Device Placement",
-      "Proximity",
-      "Symmetry",
-      "Area Optimization"
-    ]
+    num: "03/",
+    title: "FLOORPLANNING & DEVICE PLACEMENT",
+    desc: "Block-level hierarchy organization, power & ground mesh distribution, device proximity effects, placement symmetry, and area utilization optimization.",
+    dots: "•••",
   },
   {
-    num: "4",
-    module: "Module 04",
-    title: "Device Matching Techniques",
-    topics: [
-      "Matching Fundamentals",
-      "Common Centroid",
-      "Interdigitation",
-      "Dummy Devices",
-      "Symmetrical Layout",
-      "Gradient Effects"
-    ]
+    num: "04/",
+    title: "DEVICE MATCHING TECHNIQUES",
+    desc: "Pelgrom's matching law, common centroid topologies, interdigitation, dummy transistors/resistors, cross-quad routing, and thermal gradient mitigation.",
+    dots: "•••",
   },
   {
-    num: "5",
-    module: "Module 05",
-    title: "Analog Routing Techniques",
-    topics: [
-      "Metal Routing",
-      "Signal Routing",
-      "Power Routing",
-      "Sensitive Signals",
-      "Shielding",
-      "Noise and Coupling Reduction"
-    ]
+    num: "05/",
+    title: "ANALOG ROUTING TECHNIQUES",
+    desc: "Parasitic-aware metal routing, differential pair symmetry, critical signal shielding, star ground topologies, and substrate noise reduction.",
+    dots: "•••",
   },
   {
-    num: "6",
-    module: "Module 06",
-    title: "Advanced Analog Layout",
-    topics: [
-      "Guard Rings",
-      "Isolation",
-      "Latch-up",
-      "Parasitic Effects",
-      "Layout-Dependent Effects",
-      "Reliability Considerations"
-    ]
+    num: "06/",
+    title: "ADVANCED LAYOUT CONSIDERATIONS",
+    desc: "Guard ring structures, deep N-well isolation, substrate noise coupling, latch-up prevention guidelines, and layout dependent effects (WPE, LOD, PSE).",
+    dots: "•••",
   },
   {
-    num: "7",
-    module: "Module 07",
-    title: "DRC & LVS",
-    topics: [
-      "DRC Fundamentals",
-      "DRC Error Analysis",
-      "DRC Debugging",
-      "LVS Fundamentals",
-      "LVS Debugging",
-      "Connectivity Verification"
-    ]
+    num: "07/",
+    title: "PHYSICAL VERIFICATION (DRC / LVS)",
+    desc: "Sign-off DRC checks, LVS netlist comparison, shorts and opens resolution, ERC antenna rule closure, and industrial verification workflows.",
+    dots: "•••",
   },
   {
-    num: "8",
-    module: "Module 08",
-    title: "Parasitic Extraction & Post-Layout Analysis",
-    topics: [
-      "Parasitics",
-      "Resistance & Capacitance",
-      "Extraction",
-      "Post-Layout Netlist",
-      "Parasitic-Aware Simulation",
-      "Performance Comparison"
-    ]
+    num: "08/",
+    title: "PARASITIC EXTRACTION (PEX)",
+    desc: "RC parasitic extraction rules, post-layout netlist generation, back-annotation, parasitic-aware corner simulations, and pre- vs post-layout trade-offs.",
+    dots: "•••",
   },
   {
-    num: "9",
-    module: "Module 09",
-    title: "Practical Projects",
-    topics: [
-      "Analog Block Layout",
-      "Matching Exercises",
-      "Complete Layout Implementation",
-      "DRC/LVS Closure",
-      "Debugging",
-      "Optimization"
-    ]
+    num: "09/",
+    title: "PRACTICAL PDK PROJECTS",
+    desc: "Tapeout-grade execution of Two-Stage CMOS Op-Amps, Bandgap Voltage References (BGR), Low-Dropout Regulators (LDO), and SRAM bitcells.",
+    dots: "•••",
   },
   {
-    num: "10",
-    module: "Module 10",
-    title: "Interview & Career Preparation",
-    topics: [
-      "Analog Layout Interview Concepts",
-      "Technical Questions",
-      "Practical Interview Exercises",
-      "Project Discussion",
-      "Resume Guidance",
-      "Semiconductor Career Preparation"
-    ]
-  }
+    num: "10/",
+    title: "INTERVIEW & CAREER PREPARATION",
+    desc: "Comprehensive analog layout technical question bank, design scenario articulation, resume optimization, mock rounds, and tier-1 interview readiness.",
+    dots: "•••",
+  },
 ];
 
 export default function CurriculumAccordion() {
   return (
-    <section id="curriculum" className="relative w-full py-20 bg-[#F8FAFC]">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="curriculum" className="relative w-full bg-[#E5E7EB] text-black border-t border-neutral-300 font-sans selection:bg-black selection:text-white">
+      <div className="w-full max-w-[1700px] mx-auto">
+        
+        {/* Top Header Row with Crosshairs */}
+        <div className="relative border-b border-neutral-300 px-6 sm:px-10 lg:px-16 py-12 sm:py-16">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-end">
+            
+            {/* Massive Editorial Headline */}
+            <div className="lg:col-span-8 flex flex-col">
+              <span className="text-5xl sm:text-7xl lg:text-8xl xl:text-9xl font-black uppercase tracking-tight text-neutral-400 leading-[0.86] select-none">
+                CURRICULUM
+              </span>
+              <span className="text-5xl sm:text-7xl lg:text-8xl xl:text-9xl font-black uppercase tracking-tight text-black leading-[0.86] select-none">
+                APPROACH
+              </span>
+            </div>
 
-        {/* Top Header */}
-        <div className="text-left max-w-3xl mb-14">
-          <div className="inline-flex items-center gap-3 mb-2">
-            <span className="text-xs sm:text-sm font-bold tracking-widest uppercase text-[#6055EE]">
-              COURSE CURRICULUM
-            </span>
+            {/* Right Side Editorial Description */}
+           
+
           </div>
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-[#0A192F] tracking-tight">
-            Structured Learning. Practical Implementation.
-          </h2>
+
+          {/* Crosshair Indicators */}
+          <span className="absolute -bottom-2 -left-1 text-neutral-700 text-xs font-mono select-none">+</span>
+          <span className="absolute -bottom-2 -right-1 text-neutral-700 text-xs font-mono select-none">+</span>
         </div>
 
-        {/* 3 Cards per Row Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {modules.map((mod) => (
-            <div
-              key={mod.module}
-              className="group relative bg-white rounded-2xl sm:rounded-3xl border border-slate-200/90 p-6 sm:p-7 shadow-sm hover:shadow-xl hover:shadow-indigo-950/5 hover:border-[#6055EE] transition-all duration-300 flex flex-col justify-between overflow-hidden hover:-translate-y-1"
-            >
-              {/* Large Background Watermark Number as shown in image */}
-              <span className="absolute top-2 right-4 font-black text-7xl sm:text-8xl text-slate-200/70 group-hover:text-indigo-100/90 transition-colors pointer-events-none select-none z-0 tracking-tighter leading-none">
-                {mod.num}
-              </span>
-
-              {/* Card Content */}
-              <div className="relative z-10">
-                <div className="flex items-center justify-between mb-3">
-                  <span className="text-xs font-mono font-bold tracking-wider text-[#6055EE] bg-indigo-50 border border-indigo-100 px-3 py-1 rounded-lg">
-                    {mod.module}
-                  </span>
+        {/* Main Grid Section: Sticky Left Image Frame + Right 10-Module Grid */}
+        <div className="grid grid-cols-1 lg:grid-cols-12">
+          
+          {/* Left Column: Sticky Featured Architecture Image */}
+          <div className="lg:col-span-5 relative border-b lg:border-b-0 lg:border-r border-neutral-300 p-6 sm:p-10 lg:p-12 bg-[#E5E7EB]">
+            <div className="lg:sticky lg:top-28">
+              <div className="relative w-full aspect-4/3 sm:aspect-square lg:aspect-4/5 rounded-2xl overflow-hidden border border-neutral-300/80 bg-white shadow-xs p-4 sm:p-6 flex items-center justify-center group">
+                <div className="relative w-full h-full">
+                  <Image
+                    src="/footer.jpg"
+                    alt="Semiconductor Architecture & Layout Curriculum"
+                    fill
+                    className="object-contain object-center transition-transform duration-500 group-hover:scale-105"
+                    priority
+                  />
                 </div>
-
-                <h3 className="text-base sm:text-lg font-bold text-[#0A192F] group-hover:text-[#6055EE] transition-colors leading-snug mb-4">
-                  {mod.title}
-                </h3>
-
-                <ul className="space-y-2 text-xs sm:text-sm text-slate-600">
-                  {mod.topics.map((topic) => (
-                    <li key={topic} className="flex items-start gap-2 leading-relaxed">
-                      <span className="text-[#6055EE] font-bold text-xs mt-0.5">•</span>
-                      <span>{topic}</span>
-                    </li>
-                  ))}
-                </ul>
               </div>
+
+              {/* Module Counter / Indicator */}
+              
             </div>
-          ))}
+
+            {/* Junction Crosshair */}
+            <span className="absolute -top-2.5 -right-2 text-neutral-800 text-sm font-mono select-none z-10 hidden lg:block">+</span>
+          </div>
+
+          {/* Right Column: 10 Modules (2 columns x 5 rows) */}
+          <div className="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2">
+            {allTenModules.map((mod, idx) => {
+              const isEven = idx % 2 === 0;
+              const isLastTwo = idx >= allTenModules.length - 2;
+
+              return (
+                <div
+                  key={mod.num}
+                  className={`relative p-8 sm:p-9 lg:p-10 min-h-[290px] sm:min-h-[320px] flex flex-col justify-between transition-colors duration-300 hover:bg-[#DCDFE3] border-b border-neutral-300 ${
+                    isEven ? "sm:border-r border-neutral-300" : ""
+                  } ${isLastTwo ? "lg:border-b-0" : ""}`}
+                >
+                  {/* Top Row: Module Number and Dot Indicator */}
+                  <div className="flex items-center justify-between">
+                    <span className="text-base sm:text-lg font-mono font-bold tracking-tight text-neutral-900">
+                      {mod.num}
+                    </span>
+                    <span className="text-xs font-mono tracking-widest text-neutral-500">
+                      {mod.dots}
+                    </span>
+                  </div>
+
+                  {/* Bottom Content: Title and Description */}
+                  <div className="pt-8">
+                    <h3 className="text-base sm:text-lg font-bold tracking-tight uppercase text-black mb-2.5 leading-snug">
+                      {mod.title}
+                    </h3>
+                    <p className="text-xs sm:text-[13px] font-mono text-neutral-700 leading-relaxed uppercase">
+                      {mod.desc}
+                    </p>
+                  </div>
+
+                  {/* Crosshairs at grid corners */}
+                  <span className="absolute -top-2 -right-1 text-neutral-800 text-xs font-mono select-none hidden sm:block">+</span>
+                  <span className="absolute -bottom-2 -right-1 text-neutral-800 text-xs font-mono select-none hidden sm:block">+</span>
+                </div>
+              );
+            })}
+          </div>
+
         </div>
 
       </div>

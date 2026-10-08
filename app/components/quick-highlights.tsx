@@ -1,5 +1,7 @@
 "use client";
 
+import React from "react";
+
 const highlights = [
   {
     step: "01",
@@ -25,32 +27,29 @@ const highlights = [
 
 export default function QuickHighlights() {
   return (
-    <section className="relative w-full py-14 bg-white border-y border-slate-100">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+    <section className="relative w-full py-16 sm:py-20 bg-white border-y border-slate-200">
+      <div className="w-full max-w-[1700px] mx-auto px-6 sm:px-10 lg:px-16">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
           {highlights.map((item) => (
             <div
               key={item.title}
-              className="group relative p-7 rounded-3xl bg-white border border-slate-200/90 transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl hover:shadow-blue-900/5 hover:border-[#1D4ED8] flex flex-col justify-between overflow-hidden cursor-pointer"
+              className="group relative p-8 rounded-2xl bg-white border border-slate-200 hover:border-black transition-all duration-300 flex flex-col justify-between overflow-hidden shadow-xs hover:shadow-lg cursor-pointer"
             >
-              {/* Top Accent Line on Hover - Consistent Blue for every card */}
-              <div className="absolute top-0 left-0 right-0 h-1.5 bg-[#1D4ED8] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
-
               <div>
-                {/* Header with Number Pill and Tag */}
-                <div className="flex items-center justify-between mb-6">
-                  <span className="text-xs font-mono font-bold px-2.5 py-1 rounded-lg bg-slate-100 text-[#0A192F] group-hover:bg-[#1D4ED8] group-hover:text-white transition-colors duration-300">
-                    {item.step}
+                {/* Header with Number Tag */}
+                <div className="mb-5">
+                  <span className="text-xs font-mono font-semibold tracking-wider text-slate-400 uppercase">
+                    {item.step} / PILLAR
                   </span>
                 </div>
 
                 {/* Title */}
-                <h3 className="text-lg font-bold text-[#0A192F] mb-3 group-hover:text-[#1D4ED8] transition-colors duration-200">
+                <h3 className="text-xl font-medium text-[#0A192F] mb-2.5 leading-snug">
                   {item.title}
                 </h3>
 
                 {/* Description */}
-                <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                <p className="text-xs sm:text-sm text-slate-600 font-normal leading-relaxed">
                   {item.description}
                 </p>
               </div>

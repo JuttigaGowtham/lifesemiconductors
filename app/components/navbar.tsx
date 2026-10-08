@@ -1,8 +1,7 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useRef } from "react";
 import Link from "next/link";
-import Image from "next/image";
 import { FiMenu, FiX, FiChevronDown } from "react-icons/fi";
 
 interface SubItem {
@@ -18,7 +17,6 @@ interface NavItem {
 }
 
 const navItems: NavItem[] = [
-  { name: "Home", href: "/#hero" },
   {
     name: "Programs",
     href: "/#courses",
@@ -26,12 +24,12 @@ const navItems: NavItem[] = [
       {
         title: "Analog IC Layout (3-Month Flagship)",
         desc: "Tapeout-oriented PDK training, matching & DRC/LVS clean layouts",
-        href: "/#analog-layout",
+        href: "/analog-layout",
       },
       {
         title: "Physical Design (P&R)",
         desc: "Floorplanning, CTS, routing, timing closure & sign-off",
-        href: "/#courses",
+        href: "/physical-design",
       },
       {
         title: "Analog Circuit Design",
@@ -41,10 +39,11 @@ const navItems: NavItem[] = [
       {
         title: "Custom Memory & StdCell",
         desc: "SRAM bitcell architectures, sense amps & decoder layout",
-        href: "/#courses",
+        href: "/memory-layout",
       },
     ],
   },
+  { name: "Learning Paths", href: "/#learning-paths" },
   {
     name: "Domain",
     href: "/#analog-layout",
@@ -52,12 +51,12 @@ const navItems: NavItem[] = [
       {
         title: "Analog & Mixed-Signal Layout",
         desc: "Silicon implementation, matched pairs & ESD routing",
-        href: "/#analog-layout",
+        href: "/analog-layout",
       },
       {
         title: "Digital Physical Design",
         desc: "ASIC back-end flow, placement & timing closure",
-        href: "/#courses",
+        href: "/physical-design",
       },
       {
         title: "Analog Circuit Design",
@@ -67,7 +66,7 @@ const navItems: NavItem[] = [
       {
         title: "Memory Architecture & Layout",
         desc: "SRAM array architecture & peripheral layout",
-        href: "/#courses",
+        href: "/memory-layout",
       },
       {
         title: "Physical Verification (DRC/LVS)",
@@ -84,22 +83,9 @@ const navItems: NavItem[] = [
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const [mobileExpanded, setMobileExpanded] = useState<string | null>(null);
   const dropdownTimeoutRef = useRef<NodeJS.Timeout | null>(null);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > 20) {
-        setScrolled(true);
-      } else {
-        setScrolled(false);
-      }
-    };
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
 
   const handleMouseEnter = (name: string) => {
     if (dropdownTimeoutRef.current) clearTimeout(dropdownTimeoutRef.current);
@@ -117,43 +103,31 @@ export default function Navbar() {
   };
 
   return (
-    <header className="fixed top-3 sm:top-5 inset-x-0 z-50 flex justify-center px-2 sm:px-4 md:px-6 pointer-events-none transition-all duration-300">
-      {/* Floating Pill Container */}
-      <div
-        className={`w-full max-w-[1420px] bg-white/95 backdrop-blur-md rounded-2xl sm:rounded-full border border-slate-200/90 px-4 sm:px-6 lg:px-8 py-3 sm:py-3.5 min-h-[64px] sm:min-h-[72px] flex items-center justify-between gap-4 pointer-events-auto transition-all duration-300 ${
-          scrolled
-            ? "shadow-xl shadow-slate-900/10 border-slate-300/90"
-            : "shadow-md shadow-slate-900/5"
-        }`}
+    <header className="fixed top-4 sm:top-6 inset-x-0 z-50 flex items-center justify-center gap-2 sm:gap-3 px-4 pointer-events-none transition-all duration-300">
+      
+      {/* Separate Logo Pill - Left Side */}
+      <Link
+        href="/"
+        className="pointer-events-auto inline-flex items-center gap-2 bg-white/95 backdrop-blur-xl border border-neutral-200/90 shadow-[0_8px_30px_rgba(0,0,0,0.08)] rounded-full px-4 sm:px-5 py-2.5 transition-all duration-300 hover:border-neutral-400 hover:scale-[1.02] active:scale-[0.98] group"
+        aria-label="LIFE Semiconductor Home"
       >
-        {/* Logo with Brand Title */}
-        <Link href="/" className="group flex items-center gap-3 shrink-0">
-          <div className="bg-white px-3 py-1.5 rounded-xl flex items-center justify-center h-10 sm:h-11 border border-slate-200 shadow-xs group-hover:border-blue-500/40 transition-all duration-300">
-            <Image
-              src="/LIFE FINAL.jpg"
-              alt="LIFE Semiconductor Institute"
-              width={140}
-              height={32}
-              className="h-7 sm:h-8 w-auto object-contain"
-              priority
-            />
-          </div>
-          <div className="hidden xl:flex flex-col">
-            <span className="text-sm font-bold tracking-wider text-[#0A192F] uppercase group-hover:text-blue-600 transition-colors">
-              LIFE Semiconductor
-            </span>
-            <span className="text-[11px] text-slate-500 font-medium tracking-tight">
-              Learn • Implement • Focus • Excel
-            </span>
-          </div>
-        </Link>
+        <div className="w-5 h-5 rounded-full bg-black text-white flex items-center justify-center font-bold text-[10px] tracking-tight group-hover:scale-105 transition-transform shadow-xs">
+          L
+        </div>
+        <span className="font-semibold text-xs sm:text-sm tracking-tight text-neutral-900 group-hover:text-black">
+          LIFE
+        </span>
+      </Link>
 
-        {/* Desktop Nav Items with Dropdowns */}
-        <nav className="hidden lg:flex items-center gap-4 xl:gap-6">
+      {/* Main Navigation Pill */}
+      <div className="pointer-events-auto inline-flex items-center gap-1.5 sm:gap-2 bg-white/95 backdrop-blur-xl border border-neutral-200/90 shadow-[0_8px_30px_rgba(0,0,0,0.08)] rounded-full px-3 sm:px-4 py-2 transition-all duration-300 hover:border-neutral-300">
+        
+        {/* Desktop Nav Items */}
+        <nav className="hidden md:flex items-center gap-1 sm:gap-1.5">
           {navItems.map((item) => (
             <div
               key={item.name}
-              className="relative py-2"
+              className="relative"
               onMouseEnter={() => item.subItems && handleMouseEnter(item.name)}
               onMouseLeave={() => item.subItems && handleMouseLeave()}
             >
@@ -162,35 +136,34 @@ export default function Navbar() {
                   onClick={() =>
                     setActiveDropdown(activeDropdown === item.name ? null : item.name)
                   }
-                  className={`text-[14px] xl:text-[15px] font-semibold flex items-center gap-1.5 transition-colors duration-200 py-1 ${
+                  className={`px-3.5 py-1.5 rounded-full text-[13.5px] sm:text-[14px] font-medium flex items-center gap-1.5 transition-all duration-200 cursor-pointer ${
                     activeDropdown === item.name
-                      ? "text-[#1D4ED8]"
-                      : "text-[#0A192F]/85 hover:text-[#1D4ED8]"
+                      ? "text-black bg-neutral-100"
+                      : "text-neutral-700 hover:text-black hover:bg-neutral-100"
                   }`}
                 >
                   <span>{item.name}</span>
                   <FiChevronDown
                     className={`w-3.5 h-3.5 transition-transform duration-200 ${
-                      activeDropdown === item.name ? "rotate-180 text-[#1D4ED8]" : "text-slate-400"
+                      activeDropdown === item.name ? "rotate-180 text-black" : "text-neutral-400"
                     }`}
                   />
                 </button>
               ) : (
                 <Link
                   href={item.href}
-                  className="text-[14px] xl:text-[15px] font-semibold text-[#0A192F]/85 hover:text-[#1D4ED8] transition-colors duration-200 relative group py-1 whitespace-nowrap"
+                  className="px-3.5 py-1.5 rounded-full text-[13.5px] sm:text-[14px] font-medium text-neutral-700 hover:text-black hover:bg-neutral-100 transition-all duration-200 whitespace-nowrap block"
                 >
-                  <span>{item.name}</span>
-                  <span className="absolute bottom-0 left-0 w-0 h-[2px] bg-[#1D4ED8] transition-all duration-300 group-hover:w-full" />
+                  {item.name}
                 </Link>
               )}
 
-              {/* Dropdown Menu */}
+              {/* White Glassmorphic Dropdown Menu */}
               {item.subItems && activeDropdown === item.name && (
                 <div
                   onMouseEnter={() => handleMouseEnter(item.name)}
                   onMouseLeave={handleMouseLeave}
-                  className="absolute top-full left-1/2 -translate-x-1/2 mt-1 w-80 sm:w-96 bg-white/98 backdrop-blur-xl border border-slate-200/90 rounded-2xl shadow-2xl p-2.5 z-50 animate-in fade-in slide-in-from-top-2 duration-150"
+                  className="absolute top-full left-1/2 -translate-x-1/2 mt-3 w-80 sm:w-88 bg-white/98 backdrop-blur-2xl border border-neutral-200/90 rounded-2xl shadow-[0_16px_40px_rgba(0,0,0,0.12)] p-2 z-50 animate-in fade-in slide-in-from-top-2 duration-150"
                 >
                   <div className="flex flex-col gap-1">
                     {item.subItems.map((sub) => (
@@ -198,13 +171,13 @@ export default function Navbar() {
                         key={sub.title}
                         href={sub.href}
                         onClick={() => setActiveDropdown(null)}
-                        className="group/item flex flex-col p-2.5 rounded-xl hover:bg-blue-50/70 border border-transparent hover:border-blue-100 transition-all text-left"
+                        className="group/item flex flex-col p-3 rounded-xl hover:bg-neutral-100 border border-transparent hover:border-neutral-200/60 transition-all text-left"
                       >
-                        <span className="text-xs sm:text-[13px] font-bold text-[#0A192F] group-hover/item:text-[#1D4ED8] transition-colors">
+                        <span className="text-xs sm:text-[13px] font-medium text-neutral-900 group-hover/item:text-black transition-colors">
                           {sub.title}
                         </span>
                         {sub.desc && (
-                          <span className="text-[11px] text-slate-500 leading-tight mt-0.5 group-hover/item:text-slate-600">
+                          <span className="text-[11px] text-neutral-500 leading-tight mt-1 group-hover/item:text-neutral-700">
                             {sub.desc}
                           </span>
                         )}
@@ -217,63 +190,43 @@ export default function Navbar() {
           ))}
         </nav>
 
-        {/* Right CTA Buttons - Login & Sign Up (Styled like hero buttons) */}
-        <div className="hidden sm:flex items-center gap-2.5 shrink-0">
-          {/* Login Button */}
-          <Link
-            href="/#contact"
-            className="relative inline-flex items-center justify-center px-4 sm:px-5 py-2 sm:py-2.5 rounded-xl font-bold text-xs sm:text-sm text-black hover:text-white bg-white border-2 border-black/80 hover:border-[#1D4ED8] shadow-xs overflow-hidden group active:scale-[0.98] transition-colors duration-300"
-          >
-            <span className="absolute inset-0 bg-[#1D4ED8] transform scale-x-0 origin-left transition-transform duration-300 ease-out group-hover:scale-x-100 z-0" />
-            <span className="relative z-10">Login</span>
-          </Link>
-
-          {/* Sign Up Button */}
-          <Link
-            href="/#contact"
-            className="relative inline-flex items-center justify-center px-4 sm:px-5 py-2 sm:py-2.5 rounded-xl font-bold text-xs sm:text-sm text-white bg-[#1D4ED8] hover:bg-[#1E40AF] border-2 border-[#1D4ED8] hover:border-[#1E40AF] shadow-md shadow-blue-500/20 active:scale-[0.98] transition-all duration-300"
-          >
-            <span className="relative z-10">Sign Up</span>
-          </Link>
-        </div>
-
-        {/* Mobile Menu Button */}
+        {/* Mobile Menu Toggle Button */}
         <button
           onClick={() => setIsOpen(!isOpen)}
-          className="flex lg:hidden p-2 rounded-xl text-[#0A192F] hover:text-[#1D4ED8] hover:bg-slate-100 transition-colors"
+          className="flex md:hidden p-2 rounded-full text-neutral-700 hover:text-black hover:bg-neutral-100 transition-colors ml-1"
           aria-label="Toggle navigation menu"
         >
-          {isOpen ? <FiX className="w-6 h-6" /> : <FiMenu className="w-6 h-6" />}
+          {isOpen ? <FiX className="w-5 h-5" /> : <FiMenu className="w-5 h-5" />}
         </button>
       </div>
 
-      {/* Mobile Menu Dropdown */}
+      {/* Mobile Drawer / Dropdown - White Theme */}
       {isOpen && (
-        <div className="fixed inset-x-4 top-20 sm:top-24 z-40 bg-white/98 backdrop-blur-xl border border-slate-200 rounded-3xl shadow-2xl p-6 lg:hidden flex flex-col pointer-events-auto max-h-[80vh] overflow-y-auto animate-in fade-in slide-in-from-top-4 duration-200">
-          <nav className="flex flex-col gap-2">
+        <div className="fixed inset-x-4 top-20 z-40 bg-white/98 backdrop-blur-2xl border border-neutral-200 rounded-3xl shadow-[0_20px_50px_rgba(0,0,0,0.15)] p-5 md:hidden flex flex-col pointer-events-auto max-h-[80vh] overflow-y-auto animate-in fade-in slide-in-from-top-3 duration-200">
+          <nav className="flex flex-col gap-1.5">
             {navItems.map((item) => (
               <div key={item.name} className="flex flex-col">
                 {item.subItems ? (
                   <>
                     <button
                       onClick={() => toggleMobileSubmenu(item.name)}
-                      className="flex items-center justify-between text-base font-semibold text-[#0A192F] hover:text-[#1D4ED8] py-2.5 px-3 rounded-xl hover:bg-blue-50/60 transition-all text-left"
+                      className="flex items-center justify-between text-sm font-medium text-neutral-800 hover:text-black py-2.5 px-3 rounded-xl hover:bg-neutral-100 transition-all text-left"
                     >
                       <span>{item.name}</span>
                       <FiChevronDown
                         className={`w-4 h-4 transition-transform duration-200 ${
-                          mobileExpanded === item.name ? "rotate-180 text-[#1D4ED8]" : ""
+                          mobileExpanded === item.name ? "rotate-180 text-black" : "text-neutral-400"
                         }`}
                       />
                     </button>
                     {mobileExpanded === item.name && (
-                      <div className="pl-4 pr-2 py-1.5 flex flex-col gap-1.5 border-l-2 border-blue-200 ml-3 mt-1">
+                      <div className="pl-3 pr-2 py-1.5 flex flex-col gap-1 border-l border-neutral-200 ml-3 mt-1">
                         {item.subItems.map((sub) => (
                           <Link
                             key={sub.title}
                             href={sub.href}
                             onClick={() => setIsOpen(false)}
-                            className="text-xs sm:text-sm font-medium text-slate-700 hover:text-[#1D4ED8] py-1.5 px-2 rounded-lg hover:bg-blue-50/50 transition-colors"
+                            className="text-xs font-normal text-neutral-600 hover:text-black py-2 px-2 rounded-lg hover:bg-neutral-100 transition-colors"
                           >
                             {sub.title}
                           </Link>
@@ -285,31 +238,13 @@ export default function Navbar() {
                   <Link
                     href={item.href}
                     onClick={() => setIsOpen(false)}
-                    className="text-base font-semibold text-[#0A192F] hover:text-[#1D4ED8] py-2.5 px-3 rounded-xl hover:bg-blue-50/60 border-l-2 border-transparent hover:border-[#1D4ED8] transition-all"
+                    className="text-sm font-medium text-neutral-800 hover:text-black py-2.5 px-3 rounded-xl hover:bg-neutral-100 transition-all"
                   >
                     {item.name}
                   </Link>
                 )}
               </div>
             ))}
-
-            {/* Mobile CTAs */}
-            <div className="flex flex-col sm:hidden gap-2.5 pt-4 mt-2 border-t border-slate-200">
-              <Link
-                href="/#contact"
-                onClick={() => setIsOpen(false)}
-                className="w-full text-center py-2.5 rounded-xl font-bold text-sm text-black bg-white border-2 border-black/80 hover:border-[#1D4ED8] hover:text-white hover:bg-[#1D4ED8] transition-colors"
-              >
-                Login
-              </Link>
-              <Link
-                href="/#contact"
-                onClick={() => setIsOpen(false)}
-                className="w-full text-center py-2.5 rounded-xl font-bold text-sm text-white bg-[#1D4ED8] hover:bg-[#1E40AF] transition-colors shadow-md"
-              >
-                Sign Up
-              </Link>
-            </div>
           </nav>
         </div>
       )}

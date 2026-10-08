@@ -5,8 +5,8 @@
   --foreground: #0A192F;
   --navy-dark: #0A192F;
   --navy-primary: #0F2744;
-  --navy-accent: #1D4ED8;
-  --navy-light: #F0F4F8;
+  --navy-accent: #7C3AED;
+  --navy-light: #F5F3FF;
   --border-light: #E2E8F0;
 }
 
@@ -27,7 +27,21 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-sans);
+  font-weight: 500;
   overflow-x: hidden;
+}
+
+*, ::before, ::after {
+  font-weight: inherit;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+p, span, a, button, input, textarea, li, div {
+  font-weight: 500;
 }
 
 /* Custom premium scrollbar */
@@ -69,16 +83,16 @@ body {
 
 .glass-card-hover:hover {
   background: #FFFFFF;
-  border-color: #93C5FD;
+  border-color: #C4B5FD;
   transform: translateY(-3px);
-  box-shadow: 0 12px 30px -10px rgba(15, 39, 68, 0.1);
+  box-shadow: 0 12px 30px -10px rgba(124, 58, 237, 0.1);
 }
 
 /* Circuit pattern background light */
 .circuit-bg-light {
   background-color: #F8FAFC;
   background-image:
-    radial-gradient(circle at 50% 0%, rgba(29, 78, 216, 0.05) 0%, transparent 60%),
+    radial-gradient(circle at 50% 0%, rgba(124, 58, 237, 0.06) 0%, transparent 60%),
     linear-gradient(to right, rgba(15, 39, 68, 0.03) 1px, transparent 1px),
     linear-gradient(to bottom, rgba(15, 39, 68, 0.03) 1px, transparent 1px);
   background-size: 100% 100%, 3.5rem 3.5rem, 3.5rem 3.5rem;
@@ -87,7 +101,7 @@ body {
 .circuit-bg-navy {
   background-color: #0A192F;
   background-image:
-    radial-gradient(circle at 50% 0%, rgba(59, 130, 246, 0.15) 0%, transparent 60%),
+    radial-gradient(circle at 50% 0%, rgba(124, 58, 237, 0.2) 0%, transparent 60%),
     linear-gradient(to right, rgba(255, 255, 255, 0.04) 1px, transparent 1px),
     linear-gradient(to bottom, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
   background-size: 100% 100%, 3.5rem 3.5rem, 3.5rem 3.5rem;
@@ -144,4 +158,79 @@ body {
 .animate-marquee-left:hover,
 .animate-marquee-right:hover {
   animation-play-state: paused;
+}
+
+@keyframes marquee-up {
+  0% {
+    transform: translateY(0%);
+  }
+  100% {
+    transform: translateY(-50%);
+  }
+}
+
+.animate-marquee-up {
+  display: flex;
+  flex-direction: column;
+  animation: marquee-up 12s linear infinite;
+}
+
+.animate-marquee-up:hover {
+  animation-play-state: paused;
+}
+
+@keyframes float-slow {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-10px) rotate(2deg);
+  }
+}
+
+.animate-float-slow {
+  animation: float-slow 7s ease-in-out infinite;
+}
+
+@keyframes float-reverse {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(12px) rotate(-2deg);
+  }
+}
+
+.animate-float-reverse {
+  animation: float-reverse 9s ease-in-out infinite;
+}
+
+@keyframes glow-pulse {
+  0%, 100% {
+    opacity: 0.4;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.8;
+    transform: scale(1.08);
+  }
+}
+
+.animate-glow-pulse {
+  animation: glow-pulse 5s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.animate-shimmer {
+  background: linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.2) 50%, rgba(255,255,255,0) 100%);
+  background-size: 200% 100%;
+  animation: shimmer 3s infinite;
 }

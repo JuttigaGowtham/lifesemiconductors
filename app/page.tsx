@@ -1,9 +1,9 @@
 import Hero from "./components/hero";
-import QuickHighlights from "./components/quick-highlights";
+import LearningPaths from "./components/learning-paths";
 import AboutSection from "./components/about-section";
 import WhyLife from "./components/why-life";
 import TrainingPrograms from "./components/training-programs";
-import LearningJourney from "./components/learning-journey";
+// import LearningJourney from "./components/learning-journey";
 import PracticalProjects from "./components/practical-projects";
 import ToolsTechnologies from "./components/tools-technologies";
 import WhoCanJoin from "./components/who-can-join";
@@ -11,7 +11,7 @@ import AnalogLayoutDeepDive from "./components/analog-layout-deepdive";
 import CurriculumAccordion from "./components/curriculum-accordion";
 import CareerPrep from "./components/career-prep";
 import Insights from "./components/insights";
-import Testimonials from "./components/testimonials";
+// import Testimonials from "./components/testimonials";
 import FaqSection from "./components/faq-section";
 import ContactSection from "./components/contact-section";
 
@@ -21,8 +21,8 @@ export default function Home() {
       {/* 1. Hero Section */}
       <Hero />
 
-      {/* 2. Quick Highlights */}
-      <QuickHighlights />
+      {/* 2. Learning Paths Section */}
+      <LearningPaths />
 
       {/* 3. About LIFE */}
       <AboutSection />
@@ -34,7 +34,7 @@ export default function Home() {
       <TrainingPrograms />
 
       {/* 6. Learning Journey (01 to 08 Roadmap) */}
-      <LearningJourney />
+      {/* <LearningJourney /> */}
 
       {/* 7. Practical Projects Showcase */}
       <PracticalProjects />
@@ -58,7 +58,7 @@ export default function Home() {
       <Insights />
 
       {/* 15. Student Testimonials */}
-      <Testimonials />
+      {/* <Testimonials /> */}
 
       {/* 16. Frequently Asked Questions */}
       <FaqSection />

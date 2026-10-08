@@ -57,9 +57,9 @@ export default function RootLayout({
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} ${dancingScript.variable} ${spaceGrotesk.variable} h-full scroll-smooth antialiased`}
     >
-      <body className="min-h-full flex flex-col bg-white text-[#0A192F] selection:bg-[#1D4ED8] selection:text-white">
+      <body className="min-h-full flex flex-col bg-white text-[#0A192F] font-medium selection:bg-[#7C3AED] selection:text-white">
         <Navbar />
-        <div className="flex-grow">
+        <div className="flex-grow font-medium">
           {children}
         </div>
         <Footer />

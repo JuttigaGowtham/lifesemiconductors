@@ -1,82 +1,110 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import Image from "next/image";
-import { FiArrowRight } from "react-icons/fi";
+import HeroScroller from "./hero-scroller";
 
 export default function Hero() {
+  const [scrollY, setScrollY] = useState(0);
+
+  useEffect(() => {
+    let ticking = false;
+
+    const handleScroll = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          setScrollY(window.scrollY);
+          ticking = false;
+        });
+        ticking = true;
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
-    <section id="hero" className="relative w-full min-h-[90vh] flex flex-col justify-between pt-40 sm:pt-48 md:pt-52 pb-0 overflow-hidden bg-white">
+    <section id="hero" className="relative w-full flex flex-col overflow-hidden bg-[#FAFAFC] selection:bg-black selection:text-white">
 
-      {/* Hero Content */}
-      <div className="relative z-10 max-w-[1380px] mx-auto px-4 sm:px-8 lg:px-10 w-full text-left">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-8 items-center">
+      {/* Top Hero Content Area with Parallax Background Image */}
+      <div className="relative w-full min-h-[95vh] sm:min-h-[105vh] flex items-center pt-32 sm:pt-40 md:pt-44 pb-36 sm:pb-48 overflow-hidden">
+        
+        {/* Parallax Hero Background Image */}
+        <div
+          className="absolute inset-0 pointer-events-none z-0 will-change-transform"
+          style={{
+            transform: `translate3d(0, ${scrollY * 0.28}px, 0) scale(1.05)`,
+            transition: "transform 0.05s ease-out",
+          }}
+        >
+          <Image
+            src="/hero copy 2.jpg"
+            alt="Semiconductor and PCB Background"
+            fill
+            priority
+            className="object-cover object-right"
+          />
+          {/* Subtle gradient mask on left for high contrast readability */}
+          <div className="absolute inset-0 bg-gradient-to-r from-[#FAFAFC]/95 via-[#FAFAFC]/75 to-transparent" />
+        </div>
 
-          {/* Left Column: Heading, Subtitle & CTAs */}
-          <div className="lg:col-span-7 flex flex-col items-start text-left">
-            {/* Main Hero Title */}
-            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight text-[#0A192F] leading-[1.12] mb-6">
-              Build Your Future in{" "}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#1D4ED8] via-[#2563EB] to-[#0284C7]">
-                Semiconductor & VLSI
-              </span>
-            </h1>
+        {/* Hero Content with Subtle Parallax Depth */}
+        <div
+          className="relative z-10 max-w-[1700px] mx-auto px-6 sm:px-10 lg:px-16 w-full text-left will-change-transform"
+          style={{
+            transform: `translate3d(0, ${scrollY * 0.06}px, 0)`,
+          }}
+        >
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-8 items-center">
 
-            {/* Subtitle / Description */}
-            <p className="text-base sm:text-lg md:text-xl text-slate-600 leading-relaxed mb-4 font-normal max-w-2xl">
-              At <strong className="text-[#0A192F] font-semibold">LIFE Semiconductor Institute</strong>, we help students, graduates, and working professionals develop the technical knowledge and practical skills required to build a career in the semiconductor and VLSI industry.
-            </p>
+            {/* Left Column: Heading, Subtitle, CTAs & Scroller */}
+            <div className="lg:col-span-8 flex flex-col items-start text-left">
+              {/* Main Hero Title */}
+              <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-[76px] font-medium tracking-tight text-black leading-[1.05] mb-6">
+                Build Your Future in <br className="hidden sm:inline" />
+                Semiconductor & VLSI.
+              </h1>
 
-            <p className="text-sm sm:text-base md:text-lg text-[#1D4ED8] font-bold mb-8 sm:mb-10 max-w-xl">
-              Learn the concepts. Work on practical implementations. Build your technical confidence.
-            </p>
+              {/* Subtitle / Description */}
+              <p className="text-base sm:text-lg md:text-xl text-neutral-600 leading-relaxed mb-8 sm:mb-10 font-normal max-w-2xl">
+                At <strong className="text-black font-semibold">LIFE Semiconductor Institute</strong>, we help students, graduates, and working professionals develop the deep technical knowledge and silicon-level practical skills required to excel in the global semiconductor industry.
+              </p>
 
-            {/* CTA Buttons - Left Aligned with Left-to-Right Blue Hover Fill */}
-            <div className="flex flex-wrap items-center justify-start gap-4">
-              <a
-                href="#courses"
-                className="relative inline-flex items-center justify-center px-7 sm:px-8 py-3.5 sm:py-4 rounded-xl font-bold text-xs sm:text-sm md:text-base text-black hover:text-white bg-white border-2 border-black/80 hover:border-[#1D4ED8] shadow-sm overflow-hidden group active:scale-[0.98] transition-colors duration-300"
-              >
-                <span className="absolute inset-0 bg-[#1D4ED8] transform scale-x-0 origin-left transition-transform duration-300 ease-out group-hover:scale-x-100 z-0" />
-                <span className="relative z-10 flex items-center gap-2">
-                  <span>Explore Our Courses</span>
-                  <FiArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-200" />
-                </span>
-              </a>
+              {/* Hero Scroller (Seamless vertical program ticker) */}
+              <div className="w-full max-w-[520px] mb-8 sm:mb-10">
+                <HeroScroller />
+              </div>
 
-              <a
-                href="#contact"
-                className="relative inline-flex items-center justify-center px-7 sm:px-8 py-3.5 sm:py-4 rounded-xl font-bold text-xs sm:text-sm md:text-base text-black hover:text-white bg-white border-2 border-black/80 hover:border-[#1D4ED8] shadow-sm overflow-hidden group active:scale-[0.98] transition-colors duration-300"
-              >
-                <span className="absolute inset-0 bg-[#1D4ED8] transform scale-x-0 origin-left transition-transform duration-300 ease-out group-hover:scale-x-100 z-0" />
-                <span className="relative z-10">Enquire Now</span>
-              </a>
+              {/* CTA Buttons - Styled in clean About page rounded pill aesthetic */}
+              <div className="flex flex-wrap items-center justify-start gap-4">
+                <a
+                  href="#courses"
+                  className="inline-flex items-center justify-center px-8 py-3.5 rounded-full font-medium text-sm text-white bg-black hover:bg-neutral-800 shadow-sm transition-all duration-300 active:scale-[0.98]"
+                >
+                  <span className="flex items-center gap-2">
+                    <span>Explore Our Courses →</span>
+                  </span>
+                </a>
+
+                <a
+                  href="#contact"
+                  className="inline-flex items-center justify-center px-8 py-3.5 rounded-full font-medium text-sm text-neutral-900 hover:text-black bg-white border border-neutral-300 hover:border-black shadow-xs transition-all duration-300 active:scale-[0.98]"
+                >
+                  <span>Enquire Now</span>
+                </a>
+              </div>
             </div>
-          </div>
 
-          {/* Right Column: Semiconductor Chip Visual (Background Removed) */}
-          <div className="lg:col-span-5 flex justify-center lg:justify-end items-center relative">
-            <div className="relative w-full max-w-[380px] sm:max-w-[440px] lg:max-w-[480px] aspect-square flex items-center justify-center">
-              {/* Soft ambient backglow */}
-              <div className="absolute inset-0 bg-blue-500/10 rounded-full blur-3xl transform scale-90 pointer-events-none" />
-              <Image
-                src="/semiconductor-chip.png"
-                alt="Semiconductor Microchip VLSI Architecture"
-                width={480}
-                height={480}
-                className="w-full h-auto object-contain drop-shadow-2xl hover:scale-105 transition-transform duration-500 relative z-10"
-                priority
-              />
-            </div>
           </div>
-
         </div>
       </div>
 
-      {/* Full-Width Edge-to-Edge Bidirectional Marquee Tickers */}
-      <div className="relative z-10 w-full mt-14 sm:mt-16 overflow-hidden bg-black text-white border-y border-slate-800 shadow-xl">
+      {/* Full-Width Edge-to-Edge Bidirectional Marquee Tickers - Monochrome Editorial Bar */}
+      <div className="relative z-10 w-full overflow-hidden bg-black text-white border-y border-neutral-800 shadow-xl">
         {/* Row 1: Scrolling Left to Right */}
-        <div className="py-4 sm:py-5 border-b border-white/10 overflow-hidden flex select-none">
-          <div className="animate-marquee-right whitespace-nowrap flex items-center font-[family-name:var(--font-space-grotesk)] font-bold text-sm sm:text-base md:text-xl tracking-tight text-white">
+        <div className="py-4 sm:py-5 border-b border-white/10 overflow-hidden flex select-none bg-black">
+          <div className="animate-marquee-right whitespace-nowrap flex items-center font-[family-name:var(--font-space-grotesk)] font-medium text-sm sm:text-base md:text-xl tracking-tight text-white">
             {[
               "Analog IC Layout Design.",
               "Cadence Virtuoso & Calibre.",
@@ -101,7 +129,7 @@ export default function Hero() {
               "100% Hands-on PDK Training.",
             ].map((item, idx) => (
               <span key={idx} className="shrink-0 pr-8 sm:pr-14">
-                <span className="text-white hover:text-blue-400 transition-colors">{item}</span>
+                <span className="text-white hover:text-neutral-300 transition-colors">{item}</span>
               </span>
             ))}
           </div>
@@ -109,7 +137,7 @@ export default function Hero() {
 
         {/* Row 2: Scrolling Right to Left */}
         <div className="py-4 sm:py-5 overflow-hidden flex bg-black select-none">
-          <div className="animate-marquee-left whitespace-nowrap flex items-center font-[family-name:var(--font-space-grotesk)] font-bold text-sm sm:text-base md:text-xl tracking-tight text-white">
+          <div className="animate-marquee-left whitespace-nowrap flex items-center font-[family-name:var(--font-space-grotesk)] font-medium text-sm sm:text-base md:text-xl tracking-tight text-white">
             {[
               "Admissions Open For Upcoming Batch.",
               "Live Industry Expert Mentorship.",
@@ -131,12 +159,13 @@ export default function Hero() {
               "Limited Seats Available.",
             ].map((item, idx) => (
               <span key={idx} className="shrink-0 pr-8 sm:pr-14">
-                <span className="text-white/90 hover:text-blue-400 transition-colors">{item}</span>
+                <span className="text-white/90 hover:text-neutral-300 transition-colors">{item}</span>
               </span>
             ))}
           </div>
         </div>
       </div>
+
     </section>
   );
 }
