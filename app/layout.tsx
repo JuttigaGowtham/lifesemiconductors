@@ -3,6 +3,7 @@ import { Geist, Geist_Mono, Dancing_Script, Space_Grotesk } from "next/font/goog
 import "./globals.css";
 import Navbar from "./components/navbar";
 import Footer from "./components/footer";
+import ParallaxController from "./components/parallax-controller";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -58,6 +59,7 @@ export default function RootLayout({
       className={`${geistSans.variable} ${geistMono.variable} ${dancingScript.variable} ${spaceGrotesk.variable} h-full scroll-smooth antialiased`}
     >
       <body className="min-h-full flex flex-col bg-white text-[#0A192F] font-medium selection:bg-[#7C3AED] selection:text-white">
+        <ParallaxController />
         <Navbar />
         <div className="flex-grow font-medium">
           {children}

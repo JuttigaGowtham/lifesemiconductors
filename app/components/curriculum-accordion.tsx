@@ -77,10 +77,10 @@ export default function CurriculumAccordion() {
             
             {/* Massive Editorial Headline */}
             <div className="lg:col-span-8 flex flex-col">
-              <span className="text-5xl sm:text-7xl lg:text-8xl xl:text-9xl font-black uppercase tracking-tight text-neutral-400 leading-[0.86] select-none">
+              <span className="text-3xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-black uppercase tracking-tight text-neutral-400 leading-[0.9] select-none">
                 CURRICULUM
               </span>
-              <span className="text-5xl sm:text-7xl lg:text-8xl xl:text-9xl font-black uppercase tracking-tight text-black leading-[0.86] select-none">
+              <span className="text-3xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-black uppercase tracking-tight text-black leading-[0.9] select-none">
                 APPROACH
               </span>
             </div>
@@ -104,7 +104,7 @@ export default function CurriculumAccordion() {
               <div className="relative w-full aspect-4/3 sm:aspect-square lg:aspect-4/5 rounded-2xl overflow-hidden border border-neutral-300/80 bg-white shadow-xs p-4 sm:p-6 flex items-center justify-center group">
                 <div className="relative w-full h-full">
                   <Image
-                    src="/footer.jpg"
+                    src="/circulam.jpg"
                     alt="Semiconductor Architecture & Layout Curriculum"
                     fill
                     className="object-contain object-center transition-transform duration-500 group-hover:scale-105"

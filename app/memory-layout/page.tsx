@@ -1,22 +1,9 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Link from "next/link";
-import {
-  FiPlus,
-  FiChevronRight,
-  FiArrowRight,
-  FiCheckCircle,
-  FiCpu,
-  FiLayers,
-  FiTerminal,
-  FiZap,
-  FiGrid,
-  FiSliders,
-  FiBox,
-  FiDatabase,
-  FiActivity
-} from "react-icons/fi";
+import { FiPlus, FiChevronRight, FiSearch, FiX } from "react-icons/fi";
+import ProgramHighlights from "../components/program-highlights";
 
 interface ModuleSection {
   subtitle?: string;
@@ -28,37 +15,16 @@ interface ModuleItem {
   id: string;
   name: string;
   title: string;
-  icon: React.ReactNode;
   summary: string;
-  hasAssignment?: boolean;
-  assignmentText?: string;
   sections: ModuleSection[];
 }
-
-const memoryLayoutFlow = [
-  { step: "01", name: "Schematic", desc: "Schematic capture & transistor sizing" },
-  { step: "02", name: "Circuit Understanding", desc: "Hold, read & write operating margins" },
-  { step: "03", name: "Bitcell Architecture", desc: "6T / 8T / 10T topology selection" },
-  { step: "04", name: "Floor Planning", desc: "Well taps, boundary cells & pitch matching" },
-  { step: "05", name: "Device Placement", desc: "Symmetrical PU, PD & Access transistor layout" },
-  { step: "06", name: "Diffusion / Poly Optimization", desc: "Continuous diffusion sharing & poly bending" },
-  { step: "07", name: "Routing", desc: "Orthogonal M1-M4 bitline/wordline routing" },
-  { step: "08", name: "Array Formation", desc: "Abutment, mirroring & dummy row/col insertion" },
-  { step: "09", name: "DRC", desc: "Advanced design rule clean verification" },
-  { step: "10", name: "LVS", desc: "Exact pin-to-pin netlist matching" },
-  { step: "11", name: "PEX / Parasitic Analysis", desc: "Bitline capacitance & wordline resistance extraction" },
-  { step: "12", name: "Memory-Level Optimization", desc: "Area density, timing closure & IR drop signoff" },
-];
 
 const modules: ModuleItem[] = [
   {
     id: "module-1",
     name: "Module 1",
     title: "Semiconductor & Device Fundamentals",
-    icon: <FiCpu className="w-5 h-5 text-[#7C3AED]" />,
     summary: "Establish strong foundations in solid-state physics, carrier transport mechanisms, PN junctions, MOSFET operation, and CMOS logic.",
-    hasAssignment: true,
-    assignmentText: "Analyze semiconductor carrier dynamics and solve MOSFET & CMOS fundamental characterization problems.",
     sections: [
       {
         subtitle: "Semiconductor Fundamentals",
@@ -105,7 +71,7 @@ const modules: ModuleItem[] = [
           "Operating Regions (Cutoff, Linear, Saturation)",
           "Threshold Voltage (Vth) Physics & Body Effect",
           "I-V Characteristics Curves",
-          "MOSFET Current Equations (Square-Law & Modern Velocity Saturation)",
+          "MOSFET Current Equations (Square-Law & Velocity Saturation)",
         ],
       },
       {
@@ -125,10 +91,7 @@ const modules: ModuleItem[] = [
     id: "module-2",
     name: "Module 2",
     title: "Semiconductor Fabrication & Memory Technology",
-    icon: <FiLayers className="w-5 h-5 text-[#7C3AED]" />,
     summary: "Explore end-to-end silicon wafer manufacturing flows, CMOS fabrication steps, memory hierarchy, and SRAM bitcell operating ratios.",
-    hasAssignment: true,
-    assignmentText: "Analyze a basic SRAM bitcell and understand its operating modes (Hold, Read, Write) and stability ratios.",
     sections: [
       {
         subtitle: "IC Fabrication Process",
@@ -191,10 +154,7 @@ const modules: ModuleItem[] = [
     id: "module-3",
     name: "Module 3",
     title: "Linux / UNIX & TC-SH Scripting",
-    icon: <FiTerminal className="w-5 h-5 text-[#7C3AED]" />,
     summary: "Master the standard VLSI engineering terminal environment, directory management, and TC-SH scripting for CAD tool flow automation.",
-    hasAssignment: true,
-    assignmentText: "Create automated tcsh scripts for VLSI design directory setups, batch layout execution, and DRC log verification.",
     sections: [
       {
         subtitle: "Linux / UNIX Fundamentals",
@@ -226,10 +186,7 @@ const modules: ModuleItem[] = [
     id: "module-4",
     name: "Module 4",
     title: "Memory Circuit Fundamentals",
-    icon: <FiZap className="w-5 h-5 text-[#7C3AED]" />,
     summary: "Deep-dive into 6T and 8T SRAM circuits, peripheral control blocks, decoder architectures, precharge, and sense amplifiers.",
-    hasAssignment: true,
-    assignmentText: "Analyze 6T/8T SRAM operation in detail and identify every device sizing, critical net, and signal timing window.",
     sections: [
       {
         subtitle: "SRAM Bitcell (6T & 8T Architectures)",
@@ -282,10 +239,7 @@ const modules: ModuleItem[] = [
     id: "module-5",
     name: "Module 5",
     title: "Memory Layout Fundamentals",
-    icon: <FiGrid className="w-5 h-5 text-[#7C3AED]" />,
     summary: "Transition from circuit schematics to compact physical mask layouts: diffusion sharing, poly routing, and 6T/8T silicon layouts.",
-    hasAssignment: true,
-    assignmentText: "Create a complete, DRC/LVS-clean SRAM bitcell layout from schematic in an industry EDA layout tool.",
     sections: [
       {
         subtitle: "Layout Fundamentals & Design Rules",
@@ -338,10 +292,7 @@ const modules: ModuleItem[] = [
     id: "module-6",
     name: "Module 6",
     title: "Advanced Memory Layout & Array Design",
-    icon: <FiSliders className="w-5 h-5 text-[#7C3AED]" />,
     summary: "Master array abutment, cell mirroring, matching & symmetry, memory parasitics (EM/IR, crosstalk), FinFET layout, and LDE mitigation.",
-    hasAssignment: true,
-    assignmentText: "Optimize a complete memory bitcell and mini-array for area, routing, matching, and high-speed electrical performance.",
     sections: [
       {
         subtitle: "Memory Array Layout & Abutment",
@@ -399,14 +350,10 @@ const modules: ModuleItem[] = [
     id: "module-7",
     name: "Module 7",
     title: "Memory Layout Real-Time Projects",
-    icon: <FiBox className="w-5 h-5 text-[#7C3AED]" />,
     summary: "Hands-on tapeout-oriented projects covering 6T bitcells, 8T bitcells, scalable SRAM arrays, peripheral blocks, and top-level memory macro signoff.",
-    hasAssignment: true,
-    assignmentText: "Execute complete physical layout, DRC, LVS, and PEX signoff for 5 industry-grade memory projects.",
     sections: [
       {
         subtitle: "Project 1 — 6T SRAM Bitcell Layout",
-        badge: "Core Bitcell",
         topics: [
           "Schematic Understanding & Transistor Ratio Sizing (PU, PD, AX)",
           "Device Identification & Transistor Type Mapping",
@@ -421,7 +368,6 @@ const modules: ModuleItem[] = [
       },
       {
         subtitle: "Project 2 — 8T SRAM Bitcell Layout",
-        badge: "Dual-Port Architecture",
         topics: [
           "Read and Write Path Circuit Analysis",
           "Dedicated Read Buffer Transistor Placement",
@@ -435,7 +381,6 @@ const modules: ModuleItem[] = [
       },
       {
         subtitle: "Project 3 — SRAM Bitcell Array Layout",
-        badge: "Array Macro",
         topics: [
           "Bitcell Grid Replication (Rows × Columns)",
           "Seamless Cell Abutment & Well Sharing",
@@ -449,20 +394,17 @@ const modules: ModuleItem[] = [
       },
       {
         subtitle: "Project 4 — Memory Peripheral Block Layout",
-        badge: "Peripheral Blocks",
         topics: [
-          "Choose one or more dedicated peripheral blocks:",
-          "• High-Speed Bitline Precharge & Equalization Circuit",
-          "• Voltage-Latch Sense Amplifier (VLSA) with Matched Pairs",
-          "• High-Drive Differential Write Driver",
-          "• Row Address Decoder & Wordline Driver Stages",
-          "• Column Multiplexer (Col MUX) & I/O Buffers",
+          "High-Speed Bitline Precharge & Equalization Circuit",
+          "Voltage-Latch Sense Amplifier (VLSA) with Matched Pairs",
+          "High-Drive Differential Write Driver",
+          "Row Address Decoder & Wordline Driver Stages",
+          "Column Multiplexer (Col MUX) & I/O Buffers",
           "Layout Sizing, Pitch Matching & Verification",
         ],
       },
       {
         subtitle: "Project 5 — Memory Top-Level Macro Layout",
-        badge: "Full Chip Tapeout",
         topics: [
           "Hierarchical Integration of Bitcell Array & Peripheral Blocks",
           "Power Distribution Network (VDD/VSS Rings & Straps)",
@@ -478,234 +420,333 @@ const modules: ModuleItem[] = [
   },
 ];
 
+const flowSteps = [
+  {
+    step: "01",
+    name: "Bitcell Architecture",
+    desc: "Transistor ratio sizing (PU, PD, AX), stability simulation, cell ratio (CR) and pull-up ratio (PR) optimization for 6T & 8T topologies.",
+  },
+  {
+    step: "02",
+    name: "Device Placement & Symmetry",
+    desc: "Symmetrical transistor placement, continuous active diffusion sharing, boundary cells, and well tap pitch matching.",
+  },
+  {
+    step: "03",
+    name: "Critical Net Routing",
+    desc: "Orthogonal metal routing for wordlines (WL) and bitlines (BL/BLB) with parasitic resistance and capacitance minimization.",
+  },
+  {
+    step: "04",
+    name: "Array Formation & Abutment",
+    desc: "Seamless horizontal/vertical cell mirroring, well sharing, dummy column/row insertion, and power mesh integration.",
+  },
+  {
+    step: "05",
+    name: "Physical Verification & Signoff",
+    desc: "DRC, LVS, Antenna rules signoff, parasitic extraction (PEX), and EM/IR drop reliability signoff for silicon tapeout.",
+  },
+];
+
 export default function MemoryLayoutPage() {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
-  const [scrollY, setScrollY] = useState(0);
-
-  useEffect(() => {
-    let ticking = false;
-    const handleScroll = () => {
-      if (!ticking) {
-        window.requestAnimationFrame(() => {
-          setScrollY(window.scrollY);
-          ticking = false;
-        });
-        ticking = true;
-      }
-    };
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [activeStep, setActiveStep] = useState(0);
 
   const toggleAccordion = (index: number) => {
     setOpenIndex(openIndex === index ? null : index);
   };
 
+  const filteredModules = modules.filter((m) => {
+    if (!searchQuery.trim()) return true;
+    const q = searchQuery.toLowerCase();
+    const matchTitle = m.title.toLowerCase().includes(q) || m.summary.toLowerCase().includes(q);
+    const matchTopic = m.sections.some((sec) =>
+      sec.topics.some((t) => t.toLowerCase().includes(q)) || (sec.subtitle && sec.subtitle.toLowerCase().includes(q))
+    );
+    return matchTitle || matchTopic;
+  });
+
   return (
-    <main className="relative min-h-screen bg-white text-neutral-900 selection:bg-black selection:text-white font-normal overflow-hidden">
-      <div className="w-full max-w-[1700px] mx-auto px-6 sm:px-10 lg:px-16 pt-32 sm:pt-40 md:pt-44 pb-28">
-
-        {/* Top Breadcrumb */}
-        <nav className="flex items-center gap-2 text-xs sm:text-sm text-slate-400 mb-10 font-normal">
-          <Link href="/" className="hover:text-black transition-colors">
-            Home
-          </Link>
-          <FiChevronRight className="w-3.5 h-3.5 text-slate-400" />
-          <Link href="/#courses" className="hover:text-black transition-colors">
-            Programs
-          </Link>
-          <FiChevronRight className="w-3.5 h-3.5 text-slate-400" />
-          <span className="text-neutral-900 font-medium">Memory Layout</span>
-        </nav>
-
-        {/* 2-Column Layout */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
-
-          {/* Left Column: Description, Flow & Sticky Action */}
-          <div className="lg:col-span-5 lg:sticky lg:top-36 flex flex-col items-start text-left">
-            <span className="text-xs sm:text-sm font-mono font-semibold tracking-widest uppercase text-slate-400 block mb-3">
-              • SPECIALIZED VLSI PROGRAM
-            </span>
-
-            <h1 className="text-4xl sm:text-5xl md:text-6xl font-medium tracking-tight text-neutral-950 leading-[1.08] mb-5">
-              Memory Layout Design.
-            </h1>
-
-            <p className="text-base sm:text-lg text-slate-600 font-normal leading-relaxed mb-8">
-              From Semiconductor Fundamentals to Real-Time Memory Layout Projects. Master the physical implementation of memory circuits including SRAM bitcells (6T/8T), high-density memory arrays, peripheral decoders &amp; sense amps, device matching, layout optimization, DRC/LVS verification, and tapeout signoff.
-            </p>
-
-            {/* Quick Metrics Badge Card */}
-            <div className="w-full p-6 rounded-2xl bg-slate-50 border border-slate-200 shadow-xs mb-6 space-y-3.5">
-              <div className="flex items-center gap-3 text-xs sm:text-sm text-slate-700">
-                <FiCheckCircle className="w-4 h-4 text-black shrink-0" />
-                <span><strong>7 Comprehensive Modules</strong> (Physics to Tapeout)</span>
-              </div>
-              <div className="flex items-center gap-3 text-xs sm:text-sm text-slate-700">
-                <FiCheckCircle className="w-4 h-4 text-black shrink-0" />
-                <span><strong>Hands-On Assignments</strong> for Every Module</span>
-              </div>
-              <div className="flex items-center gap-3 text-xs sm:text-sm text-slate-700">
-                <FiCheckCircle className="w-4 h-4 text-black shrink-0" />
-                <span><strong>5 Tapeout Projects:</strong> 6T, 8T, Array, Peripherals &amp; Top-Level</span>
-              </div>
-              <div className="flex items-center gap-3 text-xs sm:text-sm text-slate-700">
-                <FiCheckCircle className="w-4 h-4 text-black shrink-0" />
-                <span><strong>Full Verification:</strong> DRC, LVS, PEX &amp; Parasitic Signoff</span>
-              </div>
-            </div>
-
-            {/* CTA Button */}
-            <Link
-              href="/contact"
-              className="inline-flex items-center justify-center w-full px-8 py-4 rounded-full font-medium text-sm text-white bg-black hover:bg-neutral-800 shadow-sm transition-all duration-300"
-            >
-              <span className="flex items-center justify-center gap-2">
-                <span>Enquire for Next Batch</span>
-                <FiArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
-              </span>
+    <main className="relative min-h-screen bg-[#FAFAFC] text-neutral-900 selection:bg-black selection:text-white font-medium overflow-hidden">
+      
+      {/* Top Header Section */}
+      <section className="relative w-full pt-32 sm:pt-40 md:pt-44 pb-16 sm:pb-24 border-b border-neutral-200 bg-white">
+        <div className="w-full max-w-[1700px] mx-auto px-6 sm:px-10 lg:px-16">
+          
+          {/* Top Breadcrumbs */}
+          <nav className="flex items-center gap-2 text-xs sm:text-sm text-neutral-400 mb-8 font-mono">
+            <Link href="/" className="hover:text-black transition-colors">
+              Home
             </Link>
+            <FiChevronRight className="w-3.5 h-3.5 text-neutral-300" />
+            <Link href="/training" className="hover:text-black transition-colors">
+              Programs
+            </Link>
+            <FiChevronRight className="w-3.5 h-3.5 text-neutral-300" />
+            <span className="text-neutral-900 font-semibold">Memory Layout</span>
+          </nav>
+
+          {/* Section Header */}
+          <div data-parallax="0.04" className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12 sm:mb-16 will-change-transform">
+            <div className="max-w-3xl">
+              <h1 className="text-4xl sm:text-6xl md:text-7xl font-medium tracking-tight text-black leading-[1.05]">
+                Memory Layout
+              </h1>
+            </div>
+            <div className="max-w-md">
+              <p className="text-base sm:text-lg text-neutral-600 font-normal leading-relaxed">
+                From semiconductor fundamentals to silicon signoff — master 6T/8T SRAM bitcells, sense amplifiers, decoders, array replication, and DRC/LVS verification.
+              </p>
+            </div>
           </div>
 
-          {/* Right Column: Accordion Rows */}
-          <div className="lg:col-span-7 flex flex-col border-t border-slate-200">
-            {modules.map((mod, index) => {
-              const isOpen = openIndex === index;
-
-              return (
-                <div
-                  key={mod.id}
-                  className="border-b border-slate-200 transition-colors"
-                >
-                  {/* Clickable Row Header */}
-                  <button
-                    onClick={() => toggleAccordion(index)}
-                    className="w-full py-7 sm:py-9 flex items-center justify-between text-left group transition-all cursor-pointer"
-                  >
-                    <div className="flex items-start sm:items-center gap-4 pr-4">
-                      <span className="text-xs font-mono text-slate-400 group-hover:text-[#7C3AED] transition-colors mt-1 sm:mt-0">
-                        0{index + 1}
-                      </span>
-                      <div>
-                        <div className="flex flex-wrap items-center gap-2 mb-1">
-                          <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold text-[#0A192F] group-hover:text-[#7C3AED] transition-colors tracking-tight">
-                            {mod.title}
-                          </h2>
-                          {mod.hasAssignment && (
-                            <span className="text-[10px] uppercase font-mono font-bold tracking-wider px-2 py-0.5 rounded-md bg-purple-50 text-[#7C3AED] border border-purple-200">
-                              Includes Assignment
-                            </span>
-                          )}
-                        </div>
-                        <p className="text-xs sm:text-sm text-slate-500 font-normal line-clamp-1">
-                          {mod.summary}
-                        </p>
-                      </div>
-                    </div>
-
-                    {/* Plus / Cross Icon with Smooth Rotation */}
-                    <div className="w-8 h-8 sm:w-10 sm:h-10 flex items-center justify-center text-slate-400 group-hover:text-[#7C3AED] transition-all shrink-0">
-                      <FiPlus
-                        className={`w-5 h-5 sm:w-6 sm:h-6 transition-transform duration-300 ease-out ${
-                          isOpen ? "rotate-45 text-[#7C3AED]" : ""
-                        }`}
-                      />
-                    </div>
-                  </button>
-
-                  {/* Expandable Module Content */}
-                  {isOpen && (
-                    <div className="pb-8 pt-2 animate-in fade-in slide-in-from-top-2 duration-200">
-                      <div className="space-y-6 pl-2 sm:pl-8">
-                        {mod.sections.map((sec, sIdx) => (
-                          <div key={sIdx} className="space-y-3">
-                            <div className="flex items-center justify-between">
-                              {sec.subtitle && (
-                                <h3 className="text-xs sm:text-sm font-semibold text-[#7C3AED] font-mono tracking-wider uppercase flex items-center gap-2">
-                                  <span className="w-1.5 h-1.5 rounded-full bg-[#7C3AED]" />
-                                  <span>{sec.subtitle}</span>
-                                </h3>
-                              )}
-                              {sec.badge && (
-                                <span className="text-[10px] font-mono font-semibold px-2 py-0.5 rounded bg-slate-100 text-slate-600 border border-slate-200">
-                                  {sec.badge}
-                                </span>
-                              )}
-                            </div>
-
-                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
-                              {sec.topics.map((topic, tIdx) => (
-                                <div
-                                  key={tIdx}
-                                  className="flex items-start gap-2.5 text-xs sm:text-sm text-slate-700 leading-relaxed font-normal p-3.5 rounded-xl bg-white border border-slate-200/90 shadow-2xs hover:border-[#7C3AED]/60 hover:text-[#7C3AED] transition-all"
-                                >
-                                  <span className="text-[#7C3AED] font-bold text-xs mt-0.5">•</span>
-                                  <span>{topic}</span>
-                                </div>
-                              ))}
-                            </div>
-                          </div>
-                        ))}
-
-                        {/* Assignment Note Card */}
-                        {mod.hasAssignment && (
-                          <div className="p-4 rounded-xl bg-purple-50/80 border border-purple-200/90 text-xs sm:text-sm text-[#7C3AED] flex items-start gap-3">
-                            <span className="w-2 h-2 rounded-full bg-[#7C3AED] mt-1.5 shrink-0 animate-pulse" />
-                            <div>
-                              <span className="font-bold uppercase font-mono tracking-wider block text-[11px] text-purple-900 mb-0.5">
-                                Practical Assignment:
-                              </span>
-                              <span className="text-purple-950 font-normal">
-                                {mod.assignmentText}
-                              </span>
-                            </div>
-                          </div>
-                        )}
-                      </div>
-                    </div>
-                  )}
+          {/* 4 Feature Badges Bento */}
+          <div data-parallax="0.02" className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 pt-8 border-t border-neutral-100 will-change-transform">
+            {[
+              { label: "Track Scope", value: "Custom Memory Layout" },
+              { label: "CAD & Flow", value: "Virtuoso & Calibre" },
+              { label: "Core Focus", value: "6T/8T SRAM, Arrays & Peripherals" },
+              { label: "Outcome", value: "Memory Layout Engineer" },
+            ].map((stat, idx) => (
+              <div
+                key={idx}
+                className="p-6 rounded-3xl bg-neutral-50/90 border border-neutral-200 hover:border-black transition-all duration-300 shadow-xs"
+              >
+                <span className="text-xs font-mono uppercase tracking-wider text-neutral-400 font-semibold block mb-2">
+                  {stat.label}
+                </span>
+                <div className="text-lg sm:text-xl font-medium tracking-tight text-neutral-900">
+                  {stat.value}
                 </div>
+              </div>
+            ))}
+          </div>
+
+        </div>
+      </section>
+
+      {/* Program Highlights & Assurance */}
+      <ProgramHighlights programName="Memory Layout Design" />
+
+      {/* Interactive Memory Implementation Flow Simulator Bar */}
+      <section className="relative w-full py-16 sm:py-20 bg-white border-b border-neutral-200">
+        <div className="w-full max-w-[1700px] mx-auto px-6 sm:px-10 lg:px-16">
+          
+          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-10">
+            <div>
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-medium tracking-tight text-neutral-900">
+                Interactive Memory Design Flow
+              </h2>
+            </div>
+            <p className="text-xs sm:text-sm text-neutral-500 font-mono">
+              Click each phase to inspect memory layout execution
+            </p>
+          </div>
+
+          {/* Steps Timeline Grid */}
+          <div className="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-5 gap-4 mb-8">
+            {flowSteps.map((step, idx) => {
+              const isSelected = activeStep === idx;
+              return (
+                <button
+                  key={step.step}
+                  onClick={() => setActiveStep(idx)}
+                  className={`text-left p-6 rounded-3xl transition-all duration-300 border cursor-pointer flex flex-col justify-between min-h-[160px] ${
+                    isSelected
+                      ? "bg-black text-white border-black shadow-lg scale-[1.02]"
+                      : "bg-[#FAFAFC] text-neutral-900 border-neutral-200 hover:border-black"
+                  }`}
+                >
+                  <div className="flex items-center justify-between w-full mb-3">
+                    <span
+                      className={`text-xs font-mono font-semibold tracking-wider ${
+                        isSelected ? "text-neutral-400" : "text-neutral-400"
+                      }`}
+                    >
+                      STAGE {step.step}
+                    </span>
+                    <span
+                      className={`w-2.5 h-2.5 rounded-full ${
+                        isSelected ? "bg-white" : "bg-neutral-300"
+                      }`}
+                    />
+                  </div>
+                  <div className="text-lg font-medium tracking-tight leading-snug">
+                    {step.name}
+                  </div>
+                </button>
               );
             })}
           </div>
 
-        </div>
-
-        {/* Bottom Section: Complete Memory Layout Execution Flow */}
-        <div className="mt-24 pt-16 border-t border-slate-200">
-          <div className="text-center max-w-3xl mx-auto mb-12">
-            <span className="text-xs font-mono font-bold tracking-widest uppercase text-[#7C3AED] block mb-2">
-              • INDUSTRY METHODOLOGY
-            </span>
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-[#0A192F] tracking-tight">
-              Complete Memory Layout Flow
-            </h2>
-            <p className="text-xs sm:text-sm text-slate-600 mt-3">
-              Every student masters the standard multi-step physical execution workflow followed in leading semiconductor memory design companies.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3 sm:gap-4">
-            {memoryLayoutFlow.map((item, idx) => (
-              <div
-                key={idx}
-                className="p-4 rounded-xl bg-white border border-slate-200 hover:border-[#7C3AED] hover:shadow-sm transition-all text-left group"
-              >
-                <span className="text-xs font-mono font-bold text-[#7C3AED] block mb-1">
-                  {item.step}
+          {/* Active Step Details Panel */}
+          <div className="p-8 sm:p-10 rounded-3xl bg-neutral-900 text-white border border-neutral-800 shadow-xl flex flex-col md:flex-row md:items-center justify-between gap-6">
+            <div className="max-w-3xl">
+              <div className="flex items-center gap-3 mb-2">
+                <span className="text-xs font-mono uppercase tracking-widest text-neutral-400">
+                  Execution Phase {flowSteps[activeStep].step}
                 </span>
-                <h3 className="text-xs sm:text-sm font-bold text-[#0A192F] group-hover:text-[#7C3AED] transition-colors mb-1 leading-snug">
-                  {item.name}
-                </h3>
-                <p className="text-[11px] text-slate-500 font-normal leading-normal">
-                  {item.desc}
-                </p>
+                <span className="text-white">•</span>
+                <span className="text-sm font-semibold text-white">
+                  {flowSteps[activeStep].name}
+                </span>
               </div>
-            ))}
+              <p className="text-base sm:text-lg text-neutral-300 font-normal leading-relaxed">
+                {flowSteps[activeStep].desc}
+              </p>
+            </div>
+            <Link
+              href="/contact"
+              className="inline-flex items-center justify-center px-8 py-3.5 rounded-full font-medium text-sm text-black bg-white hover:bg-neutral-100 transition-all shrink-0 self-start md:self-auto shadow-sm"
+            >
+              <span>Learn this in Lab</span>
+            </Link>
           </div>
-        </div>
 
-      </div>
+        </div>
+      </section>
+
+      {/* Main Curriculum Section */}
+      <section className="relative w-full py-20 sm:py-28 lg:py-32">
+        <div className="w-full max-w-[1700px] mx-auto px-6 sm:px-10 lg:px-16">
+          
+          {/* Header & Search Bar */}
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12 sm:mb-16">
+            <div>
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-medium tracking-tight text-neutral-900 mb-2">
+                Curriculum Breakdown
+              </h2>
+              <p className="text-base text-neutral-600 font-normal">
+                7 comprehensive modules covering fundamentals, memory circuits, array design, and real-time projects.
+              </p>
+            </div>
+
+            {/* Search Input Box */}
+            <div className="relative w-full md:w-80">
+              <FiSearch className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-neutral-400" />
+              <input
+                type="text"
+                placeholder="Search topics (e.g. SRAM, Sense Amp, DRC)..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="w-full pl-11 pr-10 py-3 rounded-full text-xs sm:text-sm bg-white border border-neutral-200 focus:outline-none focus:border-black text-neutral-900 placeholder-neutral-400 shadow-xs"
+              />
+              {searchQuery && (
+                <button
+                  onClick={() => setSearchQuery("")}
+                  className="absolute right-4 top-1/2 -translate-y-1/2 text-neutral-400 hover:text-black cursor-pointer"
+                >
+                  <FiX className="w-4 h-4" />
+                </button>
+              )}
+            </div>
+          </div>
+
+          {/* Accordion List with Balanced Smooth Grid Animation */}
+          <div className="space-y-4">
+            {filteredModules.length > 0 ? (
+              filteredModules.map((mod, index) => {
+                const isOpen = openIndex === index;
+
+                return (
+                  <div
+                    key={mod.id}
+                    className={`bg-white border rounded-3xl transition-all duration-300 shadow-xs overflow-hidden ${
+                      isOpen ? "border-black shadow-md" : "border-neutral-200 hover:border-neutral-400"
+                    }`}
+                  >
+                    {/* Clickable Header */}
+                    <button
+                      onClick={() => toggleAccordion(index)}
+                      className="w-full p-6 sm:p-8 flex items-center justify-between text-left cursor-pointer select-none group"
+                    >
+                      <div className="flex flex-col sm:flex-row sm:items-baseline gap-2 sm:gap-6 pr-4">
+                        <span className="text-xs font-mono font-semibold tracking-wider uppercase text-neutral-400 group-hover:text-black transition-colors shrink-0">
+                          {mod.name}
+                        </span>
+                        <div>
+                          <h3 className="text-xl sm:text-2xl md:text-3xl font-medium tracking-tight text-neutral-900 group-hover:text-black leading-snug">
+                            {mod.title}
+                          </h3>
+                          <p className="text-xs sm:text-sm text-neutral-500 font-normal mt-1 max-w-2xl">
+                            {mod.summary}
+                          </p>
+                        </div>
+                      </div>
+
+                      {/* Expand Plus Toggle */}
+                      <div
+                        className={`w-10 sm:w-12 h-10 sm:h-12 rounded-full border flex items-center justify-center shrink-0 transition-all duration-300 ${
+                          isOpen
+                            ? "bg-black border-black text-white"
+                            : "bg-neutral-50 border-neutral-200 text-neutral-700 group-hover:border-black group-hover:text-black"
+                        }`}
+                      >
+                        <FiPlus
+                          className={`w-5 h-5 transition-transform duration-300 ease-out ${
+                            isOpen ? "rotate-45" : "rotate-0"
+                          }`}
+                        />
+                      </div>
+                    </button>
+
+                    {/* Expandable Module Content with Balanced Smooth Animation */}
+                    <div
+                      className={`grid transition-all duration-300 ease-in-out ${
+                        isOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
+                      }`}
+                    >
+                      <div className="overflow-hidden">
+                        <div className="px-6 sm:px-8 pb-8 pt-2 border-t border-neutral-100">
+                          <div className="space-y-6 pt-4">
+                            {mod.sections.map((sec, sIdx) => (
+                              <div key={sIdx} className="space-y-3">
+                                {sec.subtitle && (
+                                  <h4 className="text-xs font-mono font-semibold tracking-wider text-neutral-400 uppercase flex items-center gap-2">
+                                    <span className="w-1.5 h-1.5 rounded-full bg-black" />
+                                    <span>{sec.subtitle}</span>
+                                  </h4>
+                                )}
+
+                                {/* Topics Grid */}
+                                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+                                  {sec.topics.map((topic, tIdx) => (
+                                    <div
+                                      key={tIdx}
+                                      className="p-4 rounded-2xl bg-neutral-50/80 border border-neutral-200/80 hover:bg-neutral-100 hover:border-black/30 transition-all text-xs sm:text-sm font-normal text-neutral-800 leading-relaxed"
+                                    >
+                                      {topic}
+                                    </div>
+                                  ))}
+                                </div>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                );
+              })
+            ) : (
+              <div className="text-center py-16 bg-white border border-neutral-200 rounded-3xl p-8">
+                <p className="text-base text-neutral-600 mb-4">
+                  No modules found matching &ldquo;{searchQuery}&rdquo;.
+                </p>
+                <button
+                  onClick={() => setSearchQuery("")}
+                  className="px-6 py-2.5 rounded-full text-xs font-medium text-white bg-black hover:bg-neutral-800 transition-all"
+                >
+                  Clear Search
+                </button>
+              </div>
+            )}
+          </div>
+
+        </div>
+      </section>
+
     </main>
   );
 }

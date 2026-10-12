@@ -44,10 +44,10 @@ export default function Contact() {
             <div className="mb-12 flex justify-start">
               <div className="bg-white/95 px-3 py-1 rounded-xl flex items-center justify-center border border-slate-200 shadow-sm">
                 <Image
-                  src="/LIFE FINAL.jpg"
+                  src="/logo.jpg"
                   alt="Life Semiconductors Logo"
-                  width={150}
-                  height={30}
+                  width={160}
+                  height={40}
                   className="h-6 w-auto object-contain"
                   priority
                 />

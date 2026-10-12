@@ -50,15 +50,17 @@ export default function WhyLife() {
           {/* Left Column: Big Impact Headline (Sticky on desktop) */}
           <div className="lg:col-span-5 px-6 sm:px-10 lg:px-14 py-16 sm:py-24 lg:py-32 lg:border-r border-neutral-300 flex flex-col justify-between">
             <div className="lg:sticky lg:top-28">
-              <h2 className="text-5xl sm:text-7xl md:text-8xl lg:text-[5.5rem] xl:text-[6.5rem] font-black uppercase tracking-tight text-neutral-900 leading-[0.9] mb-8 sm:mb-10">
-                HOW WE
-                <br />
-                WORK
-              </h2>
+              <div data-parallax="0.10" className="will-change-transform">
+                <h2 className="text-4xl sm:text-6xl md:text-7xl lg:text-[5.5rem] xl:text-[6.5rem] font-black uppercase tracking-tight text-neutral-900 leading-[0.9] mb-6 sm:mb-10">
+                  HOW WE
+                  <br />
+                  WORK
+                </h2>
 
-              <p className="text-base sm:text-lg md:text-xl text-neutral-600 font-normal leading-relaxed max-w-md">
-                Guiding every engineer from fundamental concepts to career completion seamlessly.
-              </p>
+                <p className="text-sm sm:text-base md:text-xl text-neutral-600 font-normal leading-relaxed max-w-md">
+                  Guiding every engineer from fundamental concepts to career completion seamlessly.
+                </p>
+              </div>
             </div>
           </div>
 
@@ -67,22 +69,23 @@ export default function WhyLife() {
             {steps.map((item, index) => (
               <div
                 key={item.num}
-                className={`grid grid-cols-12 border-b border-neutral-300 transition-colors duration-300 hover:bg-neutral-200/50 ${
+                data-parallax={index % 2 === 1 ? "0.15" : "0.05"}
+                className={`grid grid-cols-12 border-b border-neutral-300 transition-colors duration-300 hover:bg-neutral-200/50 will-change-transform ${
                   index === 0 ? "border-t lg:border-t-0" : ""
                 }`}
               >
                 {/* Left Number Sub-Column */}
-                <div className="col-span-3 sm:col-span-3 md:col-span-3 px-5 sm:px-8 py-8 sm:py-12 flex flex-col justify-between">
-                  <span className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-light text-neutral-900 select-none leading-none">
+                <div className="col-span-3 sm:col-span-3 md:col-span-3 px-3 sm:px-8 py-6 sm:py-12 flex flex-col justify-between">
+                  <span className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-light text-neutral-900 select-none leading-none">
                     {item.num}
                   </span>
-                  <div className="w-6 sm:w-8 h-[2px] bg-neutral-900 mt-6 sm:mt-10" />
+                  <div className="w-5 sm:w-8 h-[2px] bg-neutral-900 mt-4 sm:mt-10" />
                 </div>
 
                 {/* Right Content Sub-Column */}
-                <div className="col-span-9 sm:col-span-9 md:col-span-9 px-6 sm:px-10 lg:px-12 py-8 sm:py-12 border-l border-neutral-300 flex flex-col justify-between min-h-[160px] sm:min-h-[190px]">
+                <div className="col-span-9 sm:col-span-9 md:col-span-9 px-4 sm:px-8 lg:px-12 py-6 sm:py-12 border-l border-neutral-300 flex flex-col justify-between min-h-[140px] sm:min-h-[190px]">
                   <div>
-                    <h3 className="text-2xl sm:text-3xl md:text-4xl font-medium tracking-tight text-neutral-900 mb-4 sm:mb-6">
+                    <h3 className="text-xl sm:text-2xl md:text-4xl font-medium tracking-tight text-neutral-900 mb-3 sm:mb-6">
                       {item.title}
                     </h3>
                   </div>

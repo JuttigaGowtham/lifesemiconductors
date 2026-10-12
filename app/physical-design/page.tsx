@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { FiPlus, FiChevronRight, FiSearch, FiX } from "react-icons/fi";
+import ProgramHighlights from "../components/program-highlights";
 
 interface ModuleSection {
   subtitle?: string;
@@ -195,7 +196,7 @@ export default function PhysicalDesignPage() {
               Home
             </Link>
             <FiChevronRight className="w-3.5 h-3.5 text-neutral-300" />
-            <Link href="/#courses" className="hover:text-black transition-colors">
+            <Link href="/training" className="hover:text-black transition-colors">
               Programs
             </Link>
             <FiChevronRight className="w-3.5 h-3.5 text-neutral-300" />
@@ -203,7 +204,7 @@ export default function PhysicalDesignPage() {
           </nav>
 
           {/* Section Header */}
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12 sm:mb-16">
+          <div data-parallax="0.04" className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12 sm:mb-16 will-change-transform">
             <div className="max-w-3xl">
               <h1 className="text-4xl sm:text-6xl md:text-7xl font-medium tracking-tight text-black leading-[1.05]">
                 Physical Design
@@ -217,7 +218,7 @@ export default function PhysicalDesignPage() {
           </div>
 
           {/* 4 Feature Badges Bento */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 pt-8 border-t border-neutral-100">
+          <div data-parallax="0.02" className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 pt-8 border-t border-neutral-100 will-change-transform">
             {[
               { label: "Track Scope", value: "RTL to GDSII Flow" },
               { label: "Automation", value: "TCL & Scripting" },
@@ -240,6 +241,9 @@ export default function PhysicalDesignPage() {
 
         </div>
       </section>
+
+      {/* Program Highlights & Assurance */}
+      <ProgramHighlights programName="Physical Design (PD)" />
 
       {/* Interactive ASIC Implementation Flow Simulator Bar */}
       <section className="relative w-full py-16 sm:py-20 bg-white border-b border-neutral-200">

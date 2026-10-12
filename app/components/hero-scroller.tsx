@@ -3,10 +3,10 @@
 import Link from "next/link";
 
 const programs = [
-  { name: "Analog IC Layout Design", href: "/#analog-layout" },
+  { name: "Analog IC Layout Design", href: "/analog-layout" },
   { name: "Physical Design (PD)", href: "/physical-design" },
-  { name: "Analog Circuit Design", href: "/#courses" },
-  { name: "Memory Layout Design", href: "/#courses" },
+  { name: "Analog Circuit Design", href: "/training" },
+  { name: "Memory Layout Design", href: "/memory-layout" },
 ];
 
 export default function HeroScroller() {

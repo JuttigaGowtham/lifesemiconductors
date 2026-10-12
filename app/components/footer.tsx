@@ -3,7 +3,7 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { FiMail, FiPhone, FiMapPin } from "react-icons/fi";
+import { FiMail, FiPhone, FiMapPin, FiLinkedin } from "react-icons/fi";
 
 export default function Footer() {
   return (
@@ -212,7 +212,7 @@ export default function Footer() {
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 text-xs sm:text-sm font-mono tracking-wider uppercase text-neutral-600">
             <div>
               <Link
-                href="/#about"
+                href="/about"
                 className="hover:text-black transition-colors inline-block font-medium"
               >
                 About Institute
@@ -220,7 +220,7 @@ export default function Footer() {
             </div>
             <div>
               <Link
-                href="/#insights"
+                href="/insights"
                 className="hover:text-black transition-colors inline-block font-medium"
               >
                 Media & Insights
@@ -228,7 +228,7 @@ export default function Footer() {
             </div>
             <div>
               <Link
-                href="/#career-prep"
+                href="/placements"
                 className="hover:text-black transition-colors inline-block font-medium"
               >
                 Careers & Outcomes
@@ -236,7 +236,7 @@ export default function Footer() {
             </div>
             <div className="sm:text-right">
               <Link
-                href="/#contact"
+                href="/contact"
                 className="hover:text-black transition-colors inline-block font-bold text-black"
               >
                 Join Us →
@@ -251,14 +251,19 @@ export default function Footer() {
         <div className="max-w-[1700px] mx-auto px-6 sm:px-10 lg:px-16">
           <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-10">
 
-            {/* Left: Massive LIFE Name with Semiconductors Subtitle */}
+            {/* Left: Brand Logo Photo */}
             <div className="flex-1 min-w-[240px]">
-              <h2 className="text-7xl sm:text-8xl md:text-9xl lg:text-[130px] font-black uppercase tracking-tighter text-black leading-none select-none">
-                LIFE
-              </h2>
-              <span className="block text-xs sm:text-sm md:text-base font-mono font-bold tracking-[0.35em] uppercase text-neutral-500 mt-1 select-none">
-                SEMICONDUCTORS
-              </span>
+              <Link href="/" className="inline-block transition-opacity hover:opacity-90">
+                <Image
+                  src="/LIFE FINAL.jpg"
+                  alt="LIFE Semiconductors"
+                  width={600}
+                  height={180}
+                  quality={100}
+                  unoptimized
+                  className="h-14 sm:h-16 md:h-20 w-auto object-contain"
+                />
+              </Link>
             </div>
 
             {/* Middle: HQ Address & Contact Info */}
@@ -268,7 +273,7 @@ export default function Footer() {
               </div>
               <div className="flex items-center gap-2">
                 <FiMapPin className="w-4 h-4 text-neutral-800 shrink-0" />
-                <span>Silicon Technology Hub, HITEC City, Hyderabad, India</span>
+                <span>Guntur, Andhra Pradesh, India</span>
               </div>
               <div className="pt-2 flex flex-wrap items-center gap-x-5 gap-y-2 text-xs sm:text-sm">
                 <a
@@ -284,15 +289,26 @@ export default function Footer() {
                   className="flex items-center gap-1.5 text-neutral-700 hover:text-black font-medium transition-colors"
                 >
                   <FiPhone className="w-3.5 h-3.5 text-neutral-800" />
-                  <span>+91 9618347989</span>
+                  <span>+91 6364243355</span>
+                </a>
+                <span className="text-neutral-300">•</span>
+                <a
+                  href="https://www.linkedin.com/company/life-semiconductors/home/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-1.5 text-neutral-700 hover:text-[#0A66C2] font-medium transition-colors"
+                  aria-label="LinkedIn Profile"
+                >
+                  <FiLinkedin className="w-3.5 h-3.5 text-[#0A66C2]" />
+                  <span>LinkedIn</span>
                 </a>
               </div>
             </div>
 
-            {/* Right: Rounded Pill Button matching About Page */}
-            <div className="flex items-center lg:justify-end">
+            {/* Right: Rounded Pill Button matching About Page + LinkedIn Icon */}
+            <div className="flex items-center gap-3 lg:justify-end">
               <Link
-                href="/#contact"
+                href="/contact"
                 className="inline-flex items-center justify-center px-8 py-3.5 rounded-full font-medium text-sm text-white bg-black hover:bg-neutral-800 shadow-sm transition-all duration-300 active:scale-98"
               >
                 <span>Get In Touch →</span>
@@ -302,14 +318,15 @@ export default function Footer() {
           </div>
 
           {/* Micro Footer Bottom Bar */}
-          <div className="mt-14 pt-8 border-t border-neutral-200 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-neutral-500 font-mono">
+          <div className="mt-14 pt-8 border-t border-neutral-200 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-neutral-500 font-mono text-center sm:text-left">
             <div>
               © 2026 LIFE Semiconductor Institute. All Rights Reserved.
             </div>
-            <div className="flex items-center gap-4">
-              <span>HITEC City • Hyderabad</span>
+            <div className="flex flex-wrap items-center justify-center sm:justify-end gap-x-3 sm:gap-x-4 gap-y-1">
               <span>•</span>
-              <span>Physical Design • Analog Layout • Memory Design</span>
+              <span>Guntur • Andhra Pradesh</span>
+              <span className="hidden sm:inline">•</span>
+              <span>Privacy Policy • Terms & Conditions</span>
             </div>
           </div>
 

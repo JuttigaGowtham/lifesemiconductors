@@ -11,7 +11,7 @@ export const metadata = {
 
 export default function AboutPage() {
   return (
-    <main className="min-h-screen bg-white pt-16">
+    <main className="min-h-screen bg-white pt-24 sm:pt-32">
       <AboutSection />
       <WhyLife />
       <WhoCanJoin />

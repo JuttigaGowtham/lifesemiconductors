@@ -56,7 +56,7 @@ export default function WhoCanJoin() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
           
           {/* Left Column: Big Impact Sticky Headline matching reference image */}
-          <div className="lg:col-span-5 lg:sticky lg:top-28">
+          <div data-parallax="0.10" className="lg:col-span-5 lg:sticky lg:top-28 will-change-transform">
 
             <h2 className="text-4xl sm:text-6xl md:text-7xl lg:text-[4.5rem] xl:text-[5.25rem] font-bold tracking-tight text-neutral-950 leading-[1.04] mb-8">
               Who can join?
@@ -69,11 +69,15 @@ export default function WhoCanJoin() {
             </p>
           </div>
 
-          {/* Right Column: 2-Column Profiles Grid matching reference image */}
+          {/* Right Column: 2-Column Profiles Grid with Alternating Parallax Heights */}
           <div className="lg:col-span-7">
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-10 sm:gap-x-12 lg:gap-x-16 gap-y-14 sm:gap-y-18">
-              {targetAudiences.map((item) => (
-                <div key={item.id} className="group flex flex-col">
+              {targetAudiences.map((item, idx) => (
+                <div
+                  key={item.id}
+                  data-parallax={idx % 2 === 1 ? "0.22" : "0.08"}
+                  className="group flex flex-col will-change-transform"
+                >
                   {/* Rounded Profile Image */}
                   <div className="relative w-24 h-24 sm:w-28 sm:h-28 rounded-2xl sm:rounded-3xl overflow-hidden shadow-sm bg-neutral-100 mb-6 group-hover:scale-105 transition-transform duration-300">
                     <Image

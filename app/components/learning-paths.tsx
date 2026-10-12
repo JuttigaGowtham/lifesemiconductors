@@ -7,7 +7,7 @@ export default function LearningPaths() {
       <div className="w-full max-w-[1700px] mx-auto px-6 sm:px-10 lg:px-16">
         
         {/* Section Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12 sm:mb-16 lg:mb-20">
+        <div data-parallax="0.04" className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12 sm:mb-16 lg:mb-20 will-change-transform">
           <div className="max-w-3xl">
             <h2 className="text-4xl sm:text-6xl md:text-7xl font-medium tracking-tight text-black leading-[1.05]">
               Learning Paths
@@ -21,13 +21,13 @@ export default function LearningPaths() {
         </div>
 
         {/* 3-Column Bento Grid matching Reference Layout */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-stretch">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-6 lg:gap-8 items-stretch">
           
           {/* CARD 1 (LEFT): SkillUp Scholars (Free Learning Path - White Background / Black Text) */}
-          <div className="lg:col-span-4 bg-white border border-black rounded-3xl p-8 sm:p-10 flex flex-col justify-end transition-all duration-300 shadow-xs hover:shadow-xl group min-h-[380px] sm:min-h-[460px]">
+          <div data-parallax="0.03" className="lg:col-span-4 bg-white border border-black rounded-3xl p-6 sm:p-8 lg:p-10 flex flex-col justify-end transition-all duration-300 shadow-xs hover:shadow-xl group min-h-[340px] sm:min-h-[400px] lg:min-h-[460px] will-change-transform">
             <div className="mt-auto">
               <h3 className="text-2xl sm:text-3xl lg:text-[32px] font-medium tracking-tight text-neutral-900 mb-4 group-hover:text-black transition-colors leading-snug">
-                "SkillUp Scholars — Free Learning Path"
+                &ldquo;SkillUp Scholars — Free Learning Path&rdquo;
               </h3>
 
               <p className="text-base sm:text-lg text-neutral-600 font-normal leading-relaxed">
@@ -37,10 +37,10 @@ export default function LearningPaths() {
           </div>
 
           {/* CARD 2 (MIDDLE): SkillUp Premier (Professional Learning Path - Black Background / White Text) */}
-          <div className="lg:col-span-4 bg-black text-white border border-white rounded-3xl p-8 sm:p-10 flex flex-col justify-end hover:border-neutral-700 transition-all duration-300 shadow-xl hover:shadow-2xl group min-h-[380px] sm:min-h-[460px]">
+          <div data-parallax="0.06" className="lg:col-span-4 bg-black text-white border border-white rounded-3xl p-6 sm:p-8 lg:p-10 flex flex-col justify-end hover:border-neutral-700 transition-all duration-300 shadow-xl hover:shadow-2xl group min-h-[340px] sm:min-h-[400px] lg:min-h-[460px] will-change-transform">
             <div className="mt-auto">
               <h3 className="text-2xl sm:text-3xl lg:text-[32px] font-medium tracking-tight text-white mb-4 group-hover:text-neutral-100 transition-colors leading-snug">
-                "SkillUp Premier — Professional Learning Path"
+                &ldquo;SkillUp Premier — Professional Learning Path&rdquo;
               </h3>
 
               <p className="text-base sm:text-lg text-neutral-300 font-normal leading-relaxed">
@@ -50,7 +50,7 @@ export default function LearningPaths() {
           </div>
 
           {/* RIGHT SIDE STACKED CARDS (Matching Reference Layout) */}
-          <div className="lg:col-span-4 flex flex-col gap-4 sm:gap-6 justify-between min-h-[380px] sm:min-h-[460px]">
+          <div data-parallax="0.04" className="md:col-span-2 lg:col-span-4 flex flex-col gap-4 sm:gap-6 justify-between min-h-0 lg:min-h-[460px] will-change-transform">
             
             {/* Top Stat Card */}
             <div className="bg-white border border-neutral-200 rounded-3xl p-6 sm:p-8 hover:border-black transition-all duration-300 shadow-xs hover:shadow-md flex flex-col justify-center flex-1">
